@@ -24,8 +24,8 @@
 
 
 이 프로젝트는 '연간 개발 계획'의 두번째 스텝(STEP 2)을 위해 만들어졌습니다. </br></br>
-&nbsp; STEP 1 : JSP + Spring MVC + MyBatis  [[NECTAR ](https://github.com/CRE-A/Nectar)] </br>
-&nbsp; STEP 2 : JSP + Spring MVC + MyBatis  [[CARD PICK 2nd](https://github.com/CRE-A/CardFlip)] </br>
+&nbsp; STEP 1 : JSP + Spring MVC + MyBatis   [[NECTAR ](https://github.com/CRE-A/Nectar)] </br>
+&nbsp; STEP 2 : JSP + Spring MVC + MyBatis    [[CARD PICK](https://github.com/CRE-A/CardPick)] </br>
 &nbsp; **STEP 3 : REACT + Spring BOOT + MyBatis   [[CARD PICK 2nd](https://github.com/CRE-A/CardPick-2nd)]**    </br>
 &nbsp; STEP 4 : REACT + Spring Boot + JPA        </br>
 &nbsp; STEP 5 : REACT + Node.js                  </br></br>
