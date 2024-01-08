@@ -64,8 +64,6 @@
  <li>Spring security + JWT</li>
  <li>MyBatis </li>
  <li>REST API </li>
- <li>WAS - APACHE TOMCAT</li>
- <li>WEB SERVER - Nginx</li>
 
 
 
@@ -88,6 +86,8 @@
 
 
  <li>오재호</li>
+ 
+ <li>홍혜빈</li>
 
 
 ### 라이센스 License
