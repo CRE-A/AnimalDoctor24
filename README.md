@@ -1,7 +1,7 @@
-# 💡 CARD PICK 2nd 
+# 💡 JagureAndButterfly 
 ![image](https://github.com/CRE-A/CardPick/assets/121703704/7f4ee118-4314-40d3-9583-c1e6b47783b8)
 
-카드 뽑기를 통한 개인 성향(MBTI) 측정 서비스
+제규어와 나비를 테마로 관련 정보와 소통 공간을 제공하는 플랫폼
 
 
 
@@ -15,7 +15,7 @@
 
 
 
-개인의 성향, 성격, 마음가짐, 태도 등을 알아보기 위해, 본 서비스를 만들었습니다.(ver2.0)</br>
+제규어와 나비를 좋아하는 사람들이 모여 소통할 수 있는 공간입니다.</br>
 
 
 
@@ -26,7 +26,7 @@
 이 프로젝트는 '연간 개발 계획'의 세번째 스텝(STEP 3)을 위해 만들어졌습니다. </br></br>
 &nbsp; STEP 1 : JSP + Spring MVC + MyBatis    [[NECTAR ](https://github.com/CRE-A/Nectar)] </br>
 &nbsp; STEP 2 : JSP + Spring MVC + MyBatis     [[CARD PICK](https://github.com/CRE-A/CardPick)] </br>
-&nbsp; **STEP 3 : REACT + Spring BOOT + MyBatis   [[CARD PICK 2nd](https://github.com/CRE-A/CardPick-2nd)]**    </br>
+&nbsp; **STEP 3 : REACT + Spring BOOT + MyBatis   [[JagureAndButterfly](https://github.com/CRE-A/JagureAndButterfly)]**    </br>
 &nbsp; STEP 4 : REACT + Spring Boot + JPA        </br>
 &nbsp; STEP 5 : REACT + Node.js                  </br></br>
 
@@ -59,7 +59,7 @@
 
 ### 특징적 기술 Key Features
 
- <li>React </li>
+ <li>React.js </li>
  <li>Spring BOOT </li>
  <li>Spring security + JWT</li>
  <li>MyBatis </li>
