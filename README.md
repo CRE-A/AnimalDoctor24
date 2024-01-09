@@ -25,10 +25,10 @@
 
 
 이 프로젝트는 '연간 개발 계획'의 세번째 스텝(STEP 3)을 위해 만들어졌습니다. </br></br>
-&nbsp; STEP 1 : JSP + Spring MVC + MyBatis     [[NECTAR ](https://github.com/CRE-A/Nectar)] </br>
+&nbsp; STEP 1 : JSP + Spring MVC + MyBatis      [[NECTAR ](https://github.com/CRE-A/Nectar)] </br>
 &nbsp; STEP 2 : JSP + Spring MVC + MyBatis     [[CARD PICK](https://github.com/CRE-A/CardPick)] </br>
 &nbsp; **STEP 3 : REACT + Spring BOOT + MyBatis   [[JagureAndButterfly](https://github.com/CRE-A/JagureAndButterfly)]**    </br>
-&nbsp; STEP 4 : REACT + Spring Boot + JPA    [[JagureAndButterfly-2nd](https://github.com/CRE-A/JagureAndButterfly-2nd)]        </br>
+&nbsp; STEP 4 : REACT + Spring Boot + JPA     [[JagureAndButterfly-2nd](https://github.com/CRE-A/JagureAndButterfly-2nd)]        </br>
 &nbsp; STEP 5 : REACT + Node.js                  </br></br>
 
 
