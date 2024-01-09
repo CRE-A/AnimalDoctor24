@@ -71,16 +71,18 @@
 ### 개발환경 Development Environment
 
 
+ <li>OS - Window </li>
 
- <li>IntelliJ IDEA</li>
+ <li>React.js - Visual Studio Code</li>
+ 
+ <li>Spring BOOT - IntelliJ IDEA</li>
 
- <li>Visual Studio Code</li>
+ <li>Database - MySQL 8.0</li>
+ 
+ <li>Web server - Nginx 1.24</li>
 
- <li>Nginx 1.24</li>
+ <li>WAS - Apache Tomcat 9</li>
 
- <li>Apache Tomcat 9</li>
-
- <li>MySQL 8.0</li>
  
  
 ### 팀원 Contributors
