@@ -1,5 +1,5 @@
 # 💡 JagureAndButterfly 
-![image](https://github.com/CRE-A/CardPick/assets/121703704/7f4ee118-4314-40d3-9583-c1e6b47783b8)
+![A-Jaguar-and-a-Butterfly_Julie-Hollis](https://github.com/CRE-A/JagureAndButterfly/assets/121703704/6b95ffe3-846e-47b0-8cfb-ce7d90d2d01e)
 
 제규어와 나비를 테마로 관련 정보와 소통 공간을 제공하는 플랫폼
 
