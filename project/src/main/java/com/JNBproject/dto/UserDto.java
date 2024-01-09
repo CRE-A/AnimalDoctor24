@@ -1,4 +1,4 @@
-package com.pib102.pibApp.dto;
+package com.JNBproject.dto;
 
 import lombok.Builder;
 import lombok.Getter;

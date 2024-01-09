@@ -1,7 +1,7 @@
-package com.pib102.pibApp;
+package com.JNBproject;
 
-import com.pib102.pibApp.dto.UserDto;
-import com.pib102.pibApp.mapper.UserMapper;
+import com.JNBproject.dto.UserDto;
+import com.JNBproject.mapper.UserMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

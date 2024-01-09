@@ -1,8 +1,8 @@
-package com.pib102.pibApp.controller;
+package com.JNBproject.controller;
 
 
-import com.pib102.pibApp.dto.UserDto;
-import com.pib102.pibApp.mapper.UserMapper;
+import com.JNBproject.dto.UserDto;
+import com.JNBproject.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.GetMapping;

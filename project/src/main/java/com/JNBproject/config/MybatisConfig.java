@@ -1,4 +1,4 @@
-package com.pib102.pibApp.config;
+package com.JNBproject.config;
 
 import javax.sql.DataSource;
 
@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@MapperScan(basePackages = {"com.pib102.pibApp.**.mapper"})
+@MapperScan(basePackages = {"com.JNBproject.**.mapper"})
 public class MybatisConfig {
 
     @Bean
@@ -18,7 +18,7 @@ public class MybatisConfig {
         return factoryBean -> {
 
             String[] packages = {
-                    "com.pib102.pibApp.**.dto",
+                    "com.JNBproject.**.dto",
             };
 
             org.apache.ibatis.session.Configuration config = new org.apache.ibatis.session.Configuration();

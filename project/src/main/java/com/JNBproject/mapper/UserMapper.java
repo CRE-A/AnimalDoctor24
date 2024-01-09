@@ -1,6 +1,6 @@
-package com.pib102.pibApp.mapper;
+package com.JNBproject.mapper;
 
-import com.pib102.pibApp.dto.UserDto;
+import com.JNBproject.dto.UserDto;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

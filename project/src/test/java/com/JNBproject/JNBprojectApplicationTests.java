@@ -1,10 +1,10 @@
-package com.pib102.pibApp;
+package com.JNBproject;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class PibAppApplicationTests {
+class JNBprojectApplicationTests {
 
 	@Test
 	void contextLoads() {
