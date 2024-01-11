@@ -1,9 +1,9 @@
-# 💡 JagureAndButterfly 
+# 💡 AnimalDoctor24 
 ![14781552079985](https://github.com/CRE-A/Nectar/assets/121703704/2bf26af9-9fd8-4046-b089-ce58ddccee7b)
 
 
 제규어와 나비를 테마로 관련 정보와 소통 공간을 제공하는 플랫폼
-동물병원 검색 플랫폼
+24시간 이용 가능한 동물병원 검색 플랫폼
 
 
 # 💡 프로젝트 소개 Introduction
