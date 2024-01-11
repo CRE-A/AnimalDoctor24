@@ -1,11 +1,44 @@
+HELP.md
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### IntelliJ IDEA ###
 target/
 output/
 .idea
-/src/main/webapp/WEB-INF/spring/root-context
+*.iws
 *.iml
-#Eclipse Setting
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
 .settings/
 .classpath
 .vscode
 .DS_Store
 README.md
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
