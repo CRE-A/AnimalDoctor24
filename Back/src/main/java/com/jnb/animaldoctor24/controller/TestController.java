@@ -30,6 +30,7 @@ public class TestController {
 
     @PostMapping("/test")
     public ResponseEntity<CommonResult> test(@Valid @RequestBody UserDto userDto) {
+
         return new ResponseEntity<CommonResult>(new CommonResult(userDto), HttpStatus.OK);
     }
 }

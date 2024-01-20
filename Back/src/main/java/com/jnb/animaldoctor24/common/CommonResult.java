@@ -8,7 +8,7 @@ import lombok.ToString;
 @ToString
 @Getter
 @Setter
-public class CommonResult {
+public class CommonResult<T> {
 
     private Boolean isSuccess;
     private T result;
