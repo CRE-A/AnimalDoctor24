@@ -31,7 +31,7 @@ server:
   port: '8080'
 jwt:
   header: Authorization
-  secret: rutyweorituwyerotiuweyrtoiuweyrtoweiurtywoeighdfsojkghsdfgsdofiguwyertouw | base64 YWprbGdoc2Rma2xnanNkaGZnbGprc2RmZ2hsc2
+  secret: jagureandbina2ndprojectkk
   access-token-validity-in-seconds: 600 # 10 min
 
 
