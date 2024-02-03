@@ -1,0 +1,37 @@
+spring:
+  datasource:
+    hikari:
+      validation-timeout: '10000'
+      maxLifetime: '580000'
+      username: jnb
+      password: 1234
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://localhost:3306?useSSL=false
+      connection-timeout: '10000'
+      maximum-pool-size: '10'
+      idleTimeout: '10000'
+      connection-init-sql: SELECT 1 FROM DUAL
+mybatis:
+  configuration:
+    use-generated-keys: 'true'
+    jdbc-type-for-null: 'null'
+    lazy-load-trigger-methods: 'false'
+    default-executor-type: reuse
+    cache-enabled: 'false'
+    call-setters-on-nulls: 'true'
+logging:
+  level:
+    com:
+      jnb:
+        animaldoctor24: debug
+    root: info
+server:
+  servlet:
+    context-path: /
+  port: '8080'
+jwt:
+  header: Authorization
+  secret: rutyweorituwyerotiuweyrtoiuweyrtoweiurtywoeighdfsojkghsdfgsdofiguwyertouw | base64 YWprbGdoc2Rma2xnanNkaGZnbGprc2RmZ2hsc2
+  access-token-validity-in-seconds: 600 # 10 min
+
+
