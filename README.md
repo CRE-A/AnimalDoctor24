@@ -27,7 +27,8 @@
 &nbsp; STEP 1 : JSP + Spring MVC + MyBatis       [[NECTAR ](https://github.com/CRE-A/Nectar)] </br>
 &nbsp; STEP 2 : JSP + Spring MVC + MyBatis      [[CARD PICK](https://github.com/CRE-A/CardPick)] </br>
 &nbsp; **STEP 3 : REACT + Spring BOOT + JPA      [[AnimalDoctor24](https://github.com/CRE-A/AnimalDoctor24)]**    </br>
-&nbsp; STEP 4 : REACT + Node.js                  </br></br>
+&nbsp; STEP 4 : REACT + Node.js                  </br>
+&nbsp; STEP 5 : REACT + Django + AI APPS         </br></br>
 
 
 
