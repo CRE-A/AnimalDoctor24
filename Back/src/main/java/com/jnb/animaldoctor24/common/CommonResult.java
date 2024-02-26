@@ -9,7 +9,7 @@ import lombok.ToString;
 @Getter
 @Setter
 public class CommonResult<T> {
-    // 공통응답전문  111 
+    // 공통응답전문  
     private Boolean isSuccess;
     private T result;
 
