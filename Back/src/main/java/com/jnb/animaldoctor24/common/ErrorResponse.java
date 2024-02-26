@@ -4,7 +4,7 @@ import lombok.Getter;
 
 public class ErrorResponse {
 
-    // 에러응답기
+    // 에러응답기 11
     private final Boolean isSuccess;
     private final ErrorDetails error;
 
