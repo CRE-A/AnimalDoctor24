@@ -3,6 +3,8 @@ package com.jnb.animaldoctor24.common;
 import lombok.Getter;
 
 public class ErrorResponse {
+
+    // 에러응답기
     private final Boolean isSuccess;
     private final ErrorDetails error;
 
