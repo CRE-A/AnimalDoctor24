@@ -11,17 +11,26 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
 @EnableMethodSecurity
-
 public class SecurityConfig {
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//        CorsConfiguration corsConfig = new CorsConfiguration();
+//        corsConfig.setAllowCredentials(true);
+////        corsConfig.setAllowedOrigins(List.of("http://localhost:5173", "null"));
+//        corsConfig.setAllowedOrigins(List.of("http://localhost:3000", "null"));
+//        corsConfig.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
+//        corsConfig.setAllowedHeaders(List.of("*"));
+//        corsConfig.setExposedHeaders(List.of("*"));
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
