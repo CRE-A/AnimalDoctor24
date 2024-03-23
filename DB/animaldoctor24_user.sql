@@ -16,38 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `member`
+-- Table structure for table `user`
 --
 
-DROP TABLE IF EXISTS `member`;
+DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `member` (
-  `member_id` varchar(36) NOT NULL,
-  `member_name` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
+CREATE TABLE `user` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `contact_number` varchar(255) DEFAULT NULL,
+  `email` varchar(255) NOT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `member_role` varchar(20) NOT NULL,
-  `join_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `photo_url` varchar(500) DEFAULT NULL,
-  `active_ym` char(1) NOT NULL DEFAULT 'y',
-  `delete_yn` char(1) NOT NULL DEFAULT 'n',
-  `delete_date` timestamp NULL DEFAULT NULL,
-  `create_by` varchar(36) NOT NULL,
-  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `modify_by` varchar(36) NOT NULL,
-  `modify_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`member_id`)
+  `role` enum('USER','ADMIN') DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `member`
+-- Dumping data for table `user`
 --
 
-LOCK TABLES `member` WRITE;
-/*!40000 ALTER TABLE `member` DISABLE KEYS */;
-/*!40000 ALTER TABLE `member` ENABLE KEYS */;
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
