@@ -19,10 +19,10 @@ import org.hibernate.annotations.DynamicUpdate;
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false,name="cn")
-    private Integer cn;
-    @Column(nullable = false,name="bn")
-    private Integer bn;
+    @Column(nullable = false,name="rn")
+    private Integer rn;
+    @Column(nullable = false,name="hn")
+    private Integer hn;
 
     @Column(nullable = false, name = "id")
     private String id;

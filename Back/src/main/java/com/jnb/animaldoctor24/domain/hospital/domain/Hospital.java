@@ -19,8 +19,8 @@ import org.hibernate.annotations.DynamicUpdate;
 public class Hospital {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false,name="bn")
-    private Integer bn;
+    @Column(nullable = false,name="hn")
+    private Integer hn;
     @Column(nullable = false,name="id")
     private String id;
 

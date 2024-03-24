@@ -20,7 +20,7 @@ import java.util.Collection;
 @AllArgsConstructor
 @DynamicInsert
 @DynamicUpdate
-@Table(name="user")
+@Table(name="member")
 
 public class User implements UserDetails {
 

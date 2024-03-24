@@ -5,7 +5,7 @@ import com.jnb.animaldoctor24.domain.hospital.application.ReviewService;
 import com.jnb.animaldoctor24.domain.hospital.dao.HospitalRepo;
 import com.jnb.animaldoctor24.domain.hospital.dao.ReviewRepo;
 import com.jnb.animaldoctor24.domain.hospital.constants.ResponseConstants;
-import com.jnb.animaldoctor24.domain.hospital.util.Utils;
+import com.jnb.animaldoctor24.domain.util.Utils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
