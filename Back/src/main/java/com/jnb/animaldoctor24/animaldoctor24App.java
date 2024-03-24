@@ -10,4 +10,7 @@ public class animaldoctor24App {
 		SpringApplication.run(animaldoctor24App.class, args);
 	}
 
+//	https://velog.io/@jsb100800/Spring-boot-directory-package
+//	ddd 패키지 구조는 위를 참고함
+
 }
