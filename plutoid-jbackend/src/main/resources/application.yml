@@ -1,0 +1,31 @@
+server:
+  port: 8000
+  error:
+    path: /api/v1/error
+spring:
+  main:
+    allow-bean-definition-overriding: "true"
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/test
+    username: sa
+    password: ""
+    generate-unique-name: "false"
+    hikari:
+      maximum-pool-size: "4"
+mybatis:
+  mapper-locations: classpath:mapper/*.xml      
+logging:
+  level:
+    "[kr.itycoon.plutoid]": debug
+    org:
+      springframework:
+        security: trace
+        nodeValue: info
+      zercok: debug
+plutoid:
+  jwt:
+    secret: "my-awesome-secret-key"
+    accessToken:
+      expireSec: 600
+    refreshToken:
+      expireSec: 1800

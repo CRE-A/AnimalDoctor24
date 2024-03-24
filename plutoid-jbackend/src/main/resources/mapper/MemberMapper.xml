@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.itycoon.plutoid.biz.member.mapper.MemberMapper">
+
+  <insert id="mergeMember">
+    INSERT INTO member (member_id,
+                        member_name,
+                        email,
+                        password,
+                        member_role,
+                        join_date,
+                        photo_url,
+                        active_yn,
+                        delete_yn,
+                        delete_date,
+                        create_by,
+                        create_date,
+                        modify_by,
+                        modify_date)
+    VALUES (#{memberId},
+            #{memberName},
+            #{email},
+            #{password},
+            #{memberRole},
+            #{joinDate},
+            #{photoUrl},
+            #{activeYn},
+            #{deleteYn},
+            #{deleteDate},
+            #{createBy},
+            #{createDate},
+            #{modifyBy},
+            #{modifyDate})
+  </insert>
+
+  <select id="findMemberByKey" resultType="Member">
+    SELECT m.member_id,
+           m.member_name,
+           m.email,
+           m.password,
+           m.member_role,
+           m.join_date,
+           m.photo_url,
+           m.active_yn,
+           m.delete_yn,
+           m.delete_date,
+           m.create_by,
+           m.create_date,
+           m.modify_by,
+           m.modify_date
+    FROM member m
+    WHERE m.member_id = #{memberId}
+      AND m.delete_yn = 'N'
+    ORDER BY m.create_date DESC LIMIT 1
+  </select>
+
+  <select id="findMemberByEmail" resultType="Member">
+    SELECT m.member_id,
+           m.member_name,
+           m.email,
+           m.password,
+           m.member_role,
+           m.join_date,
+           m.photo_url,
+           m.active_yn,
+           m.delete_yn,
+           m.delete_date,
+           m.create_by,
+           m.create_date,
+           m.modify_by,
+           m.modify_date
+    FROM member m
+    WHERE m.email = #{email}
+      AND m.delete_yn = 'N'
+    ORDER BY m.create_date DESC LIMIT 1
+  </select>
+
+  <select id="login" resultType="Member">
+    SELECT m.member_id,
+           m.member_name,
+           m.email,
+           m.password,
+           m.member_role,
+           m.join_date,
+           m.photo_url,
+           m.active_yn,
+           m.delete_yn,
+           m.delete_date,
+           m.create_by,
+           m.create_date,
+           m.modify_by,
+           m.modify_date
+    FROM member m
+    WHERE email = #{email}
+  </select>
+
+  <update id="updatePwdByEmail">
+    UPDATE
+      member
+    SET password    = #{password},
+        modify_by   = #{email},
+        modify_date = #{modifyDate}
+    WHERE email = #{email}
+      AND delete_yn = 'N'
+  </update>
+
+  <update id="updatePwdByKey">
+    UPDATE
+      member
+    SET password    = #{password},
+        modify_by   = #{memberId},
+        modify_date = #{modifyDate}
+    WHERE member_id = #{memberId}
+      AND delete_yn = 'N'
+  </update>
+
+
+  <update id="updateMember">
+    UPDATE member
+    SET member_name = #{memberName},
+        photo_url   = #{photoUrl}
+    WHERE member_id = #{memberId}
+      AND delete_yn = 'N'
+      AND active_yn = 'Y';
+  </update>
+
+  <update id="deleteMember">
+    UPDATE member
+    SET delete_yn = 'Y'
+    WHERE member_id = #{memberId}
+      AND email = #{email}
+      AND delete_yn = 'N'
+      AND active_yn = 'Y';
+  </update>
+</mapper>

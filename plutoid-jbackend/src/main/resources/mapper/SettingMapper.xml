@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.itycoon.plutoid.biz.member.mapper.SettingMapper">
+
+  <insert id="insertSetting">
+    INSERT INTO SETTING (MEMBER_ID,
+                         SETTING_NO,
+                         LLM_PROVIDER,
+                         LLM_MODEL,
+                         SETTING_DATE,
+                         DEFAULT_VALUE_YN,
+                         CREATE_BY,
+                         CREATE_DATE,
+                         MODIFY_BY,
+                         MODIFY_DATE)
+    VALUES (#{memberId},
+            #{settingNo},
+            #{llmProvider},
+            #{llmModel},
+            #{settingDate},
+            #{defaultValueYn},
+            #{createBy},
+            #{createDate},
+            #{modifyBy},
+            #{modifyDate});
+  </insert>
+
+  <select id="findSettingByKey" resultType="Setting">
+    SELECT MEMBER_ID,
+           SETTING_NO,
+           LLM_PROVIDER,
+           LLM_MODEL,
+           SETTING_DATE,
+           DEFAULT_VALUE_YN,
+           CREATE_BY,
+           CREATE_DATE,
+           MODIFY_BY,
+           MODIFY_DATE
+    FROM Setting
+    WHERE member_id = #{memberId}
+    ORDER BY member_id ASC, setting_no DESC LIMIT 1;
+  </select>
+
+  <insert id="insertSettingDetails">
+    insert into SETTING_DETAIL (MEMBER_ID,
+                                SETTING_NO,
+                                SETTING_KEY,
+                                SETTING_VALUE,
+                                CREATE_BY,
+                                CREATE_DATE,
+                                MODIFY_BY,
+                                MODIFY_DATE)
+    values (#{memberId},
+            #{settingNo},
+            #{settingKey},
+            #{settingValue},
+            #{createBy},
+            #{createDate},
+            #{modifyBy},
+            #{modifyDate});
+  </insert>
+
+  <select id="getMaxSettingNo" resultType="java.lang.Integer">
+    SELECT MAX(setting_no)
+    FROM Setting
+    WHERE member_id = #{memberId}
+  </select>
+
+  <select id="selectSettingDetails">
+    SELECT s.MEMBER_ID,
+           s.SETTING_NO,
+           s.SETTING_KEY,
+           s.SETTING_VALUE,
+           s.CREATE_BY,
+           s.CREATE_DATE,
+           s.MODIFY_BY,
+           s.MODIFY_DATE
+    FROM SETTING_DETAIL s
+    WHERE member_id = #{memberId}
+  </select>
+
+
+</mapper>
