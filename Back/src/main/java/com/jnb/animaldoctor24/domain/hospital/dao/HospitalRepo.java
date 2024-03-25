@@ -10,5 +10,5 @@ import java.util.Optional;
 public interface HospitalRepo extends JpaRepository<Hospital, Integer> {
     HospitalDto findByHn(Integer hn);
 
-    List<HospitalDto> findAllBy(Integer page);
+//    List<HospitalDto> findAllBy(Integer page);
 }
