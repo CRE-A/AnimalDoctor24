@@ -12,7 +12,7 @@ body {
 
 #root {
   /*@apply flex flex-col justify-center w-[400px] h-[800px] mx-auto ;*/
-  @apply h-screen w-screen flex justify-center items-center bg-gray-200;
+  @apply h-screen w-screen flex justify-center items-center bg-gray-200 ;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

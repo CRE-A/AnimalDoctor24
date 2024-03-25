@@ -7,8 +7,7 @@ export default function Home() {
     const navigate = useNavigate();
     return (
         <>
-            <section className="relative flex flex-col items-center w-[393px] h-[852px] bg-white ">
-                <Nav/>
+            <section className="relative flex flex-col items-center bg-white w-[393px] h-[782px] ">
                 <div className="flex flex-col items-center">
                     <div className="w-[316px] h-[316px] my-[40px]">
                         <img src="https://loosedrawing.com/assets/illustrations/png/1058.png" />
