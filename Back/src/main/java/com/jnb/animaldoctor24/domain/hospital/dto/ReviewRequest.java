@@ -1,4 +1,4 @@
-package com.jnb.animaldoctor24.domain.hospital.api;
+package com.jnb.animaldoctor24.domain.hospital.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

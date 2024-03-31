@@ -2,6 +2,7 @@ package com.jnb.animaldoctor24.domain.hospital.api;
 
 import com.jnb.animaldoctor24.domain.hospital.application.HospitalService;
 import com.jnb.animaldoctor24.domain.hospital.dto.HospitalDto;
+import com.jnb.animaldoctor24.domain.hospital.dto.HospitalRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +15,7 @@ import java.util.List;
 // 병원 좋아요(하트) 등록/삭제
 // 병원 검색
 @RestController
-@RequestMapping("/hospital")
+@RequestMapping("/api/v1/hospital")
 @RequiredArgsConstructor
 @Tag(name="동물병원", description="동물병원 API")
 public class HospitalController {

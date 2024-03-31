@@ -1,6 +1,6 @@
 package com.jnb.animaldoctor24.domain.hospital.application;
 
-import com.jnb.animaldoctor24.domain.hospital.api.ReviewRequest;
+import com.jnb.animaldoctor24.domain.hospital.dto.ReviewRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 

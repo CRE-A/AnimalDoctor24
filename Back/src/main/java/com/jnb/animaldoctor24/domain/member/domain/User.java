@@ -1,6 +1,6 @@
 package com.jnb.animaldoctor24.domain.member.domain;
 
-import com.jnb.animaldoctor24.domain.member.util.Role;
+import com.jnb.animaldoctor24.domain.member.domain.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

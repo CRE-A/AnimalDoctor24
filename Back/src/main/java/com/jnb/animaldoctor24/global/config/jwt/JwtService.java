@@ -1,4 +1,4 @@
-package com.jnb.animaldoctor24.domain.member.config;
+package com.jnb.animaldoctor24.global.config.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -16,7 +16,6 @@ import java.util.function.Function;
 
 @Service
 public class JwtService {
-//    @Value("${JWT_SECRET_KEY}")
     @Value("${jwt.secret}")
     private String SECRET_KEY;
 

@@ -24,7 +24,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class JwtAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
-
     private final ObjectMapper objectMapper;
 
     public JwtAuthenticationFilter(AuthenticationManager authenticationManager, ObjectMapper objectMapper) {

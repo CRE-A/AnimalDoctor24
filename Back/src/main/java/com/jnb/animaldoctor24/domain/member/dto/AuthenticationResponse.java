@@ -1,4 +1,4 @@
-package com.jnb.animaldoctor24.domain.member.api;
+package com.jnb.animaldoctor24.domain.member.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 public class AuthenticationResponse {
 @JsonProperty("access_token")
     private String accessToken;
-
     private String userAlreadyExists;
 }
+
+

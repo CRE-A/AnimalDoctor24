@@ -1,11 +1,11 @@
 package com.jnb.animaldoctor24.domain.hospital.application.impl;
 
-import com.jnb.animaldoctor24.domain.hospital.api.HospitalRequest;
+import com.jnb.animaldoctor24.domain.hospital.dto.HospitalRequest;
 import com.jnb.animaldoctor24.domain.hospital.application.HospitalService;
-import com.jnb.animaldoctor24.domain.hospital.constants.ResponseConstants;
+import com.jnb.animaldoctor24.global.constants.ResponseConstants;
 import com.jnb.animaldoctor24.domain.hospital.dao.HospitalRepo;
 import com.jnb.animaldoctor24.domain.hospital.dto.HospitalDto;
-import com.jnb.animaldoctor24.domain.util.Utils;
+import com.jnb.animaldoctor24.global.util.Utils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

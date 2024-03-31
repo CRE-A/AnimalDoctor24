@@ -18,4 +18,5 @@ public class CommonResult<T> {
         this.isSuccess = true;
         this.result = result;
     }
+
 }

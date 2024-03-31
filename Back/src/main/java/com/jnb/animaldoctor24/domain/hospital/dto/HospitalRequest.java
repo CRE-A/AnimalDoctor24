@@ -1,4 +1,4 @@
-package com.jnb.animaldoctor24.domain.hospital.api;
+package com.jnb.animaldoctor24.domain.hospital.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,4 +18,5 @@ public class HospitalRequest {
     private String tag;
     private String desc;
     private String imgPath;
+
 }
