@@ -1,8 +1,9 @@
 package com.jnb.animaldoctor24.domain.hospital.api;
 
 import com.jnb.animaldoctor24.domain.hospital.application.HospitalService;
-import com.jnb.animaldoctor24.domain.hospital.dto.HospitalDto;
+import com.jnb.animaldoctor24.domain.hospital.domain.Hospital;
 import com.jnb.animaldoctor24.domain.hospital.dto.HospitalRequest;
+import com.jnb.animaldoctor24.domain.hospital.dto.HospitalResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -22,29 +23,33 @@ public class HospitalController {
     private final HospitalService hospitalService;
 
     @GetMapping("/list")
-    @Operation(summary = "데이터 조회", description = "데이터 목록 조회")
-    public ResponseEntity<List<HospitalDto>> showListOfHospital (Integer page) {
-        return ResponseEntity.ok(hospitalService.list(page));
+    @Operation(summary = "병원 리스트 조회", description = "병원 목록 조회")
+    public ResponseEntity<List<Hospital>> showListOfHospital () {
+        return ResponseEntity.ok(hospitalService.list());
     }
 
     @GetMapping("/{hn}")
-    public ResponseEntity<HospitalDto> showHospital (@PathVariable Integer hn) {
-        return ResponseEntity.ok(hospitalService.getHospital(hn));
+    @Operation(summary = "병원 조회", description = "병원 정보 조회")
+    public ResponseEntity<Hospital> showHospital (@PathVariable Integer hn) {
+        return ResponseEntity.ok().body(hospitalService.getHospital(hn));
     }
 
-    @PostMapping("/register")
+    @PostMapping("/new")
+    @Operation(summary = "병원 정보 등록", description = "병원 신규 등록")
     public ResponseEntity<ResponseEntity<String>> registerHospital (@RequestBody HospitalRequest request) {
         return ResponseEntity.ok(hospitalService.register(request));
     }
 
 
-    @PostMapping("/modify")
-    public ResponseEntity<ResponseEntity<String>> modifyHospital (@RequestBody HospitalRequest request) {
+    @PatchMapping("/{hn}/{userId}")
+    @Operation(summary = "병원 정보 수정", description = "병원 정보 수정")
+    public ResponseEntity<ResponseEntity<String>> modifyHospital (@PathVariable Integer hn, @PathVariable String userId, @RequestBody HospitalRequest request) {
         return ResponseEntity.ok(hospitalService.modify(request));
     }
 
-    @PostMapping("/delete")
-    public ResponseEntity<ResponseEntity<String>> deleteHospital (@RequestBody HospitalRequest request) {
+    @DeleteMapping("/{hn}/{userId}")
+    @Operation(summary = "병원 정보 삭제", description = "병원 정보 삭제")
+    public ResponseEntity<ResponseEntity<String>> deleteHospital (@PathVariable Integer hn, @PathVariable String userId, @RequestBody HospitalRequest request) {
         return ResponseEntity.ok(hospitalService.delete(request));
     }
 }

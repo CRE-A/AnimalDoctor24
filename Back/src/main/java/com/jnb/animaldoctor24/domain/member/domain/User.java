@@ -21,7 +21,6 @@ import java.util.Collection;
 @DynamicInsert
 @DynamicUpdate
 @Table(name="member")
-
 public class User implements UserDetails {
 
     @Id
@@ -34,8 +33,8 @@ public class User implements UserDetails {
     @Column(nullable = false,name="last_name")
     private String lastname;
 
-    @Column(name = "contact_number")
-    private String contactNumber;
+    @Column(name = "phone_number")
+    private String phoneNumber;
 
     @Column(nullable = false,name="email")
     private String email;

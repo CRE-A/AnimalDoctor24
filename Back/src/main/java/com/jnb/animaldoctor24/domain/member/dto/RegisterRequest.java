@@ -16,9 +16,12 @@ public class RegisterRequest {
     private String firstname;
     @Schema(description = "성", example = "홍")
     private String lastname;
+    @Schema(description = "이메일", example = "hello@naver.com")
     private String email;
+    @Schema(description = "비밀번호", example = "jaeHiddelStone!")
     private String password;
-    private String contactNumber;
+    @Schema(description = "전화번호", example = "01012345678")
+    private String phoneNumber;
     private Role role;
 
 

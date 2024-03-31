@@ -1,6 +1,6 @@
 package com.jnb.animaldoctor24.domain.hospital.application.impl;
 
-import com.jnb.animaldoctor24.domain.hospital.dto.ReviewRequest;
+import com.jnb.animaldoctor24.domain.hospital.dto.ReviewResponse;
 import com.jnb.animaldoctor24.domain.hospital.application.ReviewService;
 import com.jnb.animaldoctor24.domain.hospital.dao.HospitalRepo;
 import com.jnb.animaldoctor24.domain.hospital.dao.ReviewRepo;
@@ -19,7 +19,7 @@ public class ReviewServiceImpl implements ReviewService {
 
 
     @Override
-    public ResponseEntity<String> register(ReviewRequest request) {
+    public ResponseEntity<String> register(ReviewResponse request) {
         try{
             return Utils.getResponseEntity(ResponseConstants.REVIEW_REGISTER_SUCCESS, HttpStatus.OK);
         }catch (Exception e){
@@ -28,7 +28,7 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public ResponseEntity<String> modify(ReviewRequest request) {
+    public ResponseEntity<String> modify(ReviewResponse request) {
         try{
             return Utils.getResponseEntity(ResponseConstants.REVIEW_MODIFY_SUCCESS, HttpStatus.OK);
         }catch (Exception e){
@@ -37,7 +37,7 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public ResponseEntity<String> delete(ReviewRequest request) {
+    public ResponseEntity<String> delete(ReviewResponse request) {
         try{
             return Utils.getResponseEntity(ResponseConstants.REVIEW_DELETE_SUCCESS, HttpStatus.OK);
         }catch (Exception e){

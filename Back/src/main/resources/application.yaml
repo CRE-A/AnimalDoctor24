@@ -12,14 +12,17 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
         format_sql: true
-  logging:
-    level:
-      com:
-        jnb:
-          animaldoctor24: debug
-      root: info
+#  logging:
+#    level:
+#      com:
+#        jnb:
+#          animaldoctor24.domain: debug
+#      root: info
 jwt:
-  header: Authorization
+#  header: Authorization
   secret: YTlzbDc4azV6eTN0cTJkeWt0MTNzbGRneHZtb2wzYmViZHJoeXNocmNlMHB0bHZiNzV5eDJ0bTQ5cGRtY2Y5em1mcTJwOTh5YzZ3dnllam10anlkZmV4NXIyM3MwbzVkdXl6cjZ2bmF2czhwOXg4c2podXE1Y3U5YXphY2ljaDc=
-  access-token-validity-in-seconds: 600 # 10 min
+#  access-token-validity-in-seconds: 600 # 10 min
 
+
+# swagger home
+# localhost:8080/swagger-ui.html
