@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class HospitalRequest {
 //    private Integer hn; // hospital number
+
     @Schema(description = "이메일", example = "jagure1991@naver.com")
     private String email;
     @Schema(description = "권한", example = "USER/ADMIN")

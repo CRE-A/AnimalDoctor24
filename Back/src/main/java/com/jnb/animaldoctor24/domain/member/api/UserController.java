@@ -7,6 +7,7 @@ import com.jnb.animaldoctor24.domain.member.dto.AuthenticationResponse;
 import com.jnb.animaldoctor24.domain.member.dto.RegisterRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,13 +22,13 @@ public class UserController {
 
     @PostMapping("/register")
     @Operation(summary = "회원가입", description = "신규가입")
-    public ResponseEntity<ResponseEntity<String>> signup(@RequestBody RegisterRequest request) {
+    public ResponseEntity<ResponseEntity<String>> signup(@Valid @RequestBody RegisterRequest request) {
         return ResponseEntity.ok(authenticationService.register(request));
     }
 
     @PostMapping("/authenticate")
     @Operation(summary = "로그인", description = "인증/인가")
-    public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request) {
+    public ResponseEntity<AuthenticationResponse> authenticate(@Valid @RequestBody AuthenticationRequest request) {
         return ResponseEntity.ok(authenticationService.authenticate(request));
     }
 
