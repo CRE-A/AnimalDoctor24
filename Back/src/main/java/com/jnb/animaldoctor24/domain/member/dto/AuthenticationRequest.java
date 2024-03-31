@@ -1,4 +1,4 @@
-package com.jnb.animaldoctor24.domain.member.api;
+package com.jnb.animaldoctor24.domain.member.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AuthenticationRequest {
-
         private String email;
         private String password;
 }

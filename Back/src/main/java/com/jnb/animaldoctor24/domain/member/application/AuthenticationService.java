@@ -1,13 +1,13 @@
 package com.jnb.animaldoctor24.domain.member.application;
 
-import com.jnb.animaldoctor24.domain.member.config.JwtService;
+import com.jnb.animaldoctor24.global.config.jwt.JwtService;
 import com.jnb.animaldoctor24.domain.member.domain.User;
-import com.jnb.animaldoctor24.domain.member.util.Role;
-import com.jnb.animaldoctor24.domain.member.util.Utils;
-import com.jnb.animaldoctor24.domain.member.constants.ResponseConstants;
-import com.jnb.animaldoctor24.domain.member.api.AuthenticationRequest;
-import com.jnb.animaldoctor24.domain.member.api.AuthenticationResponse;
-import com.jnb.animaldoctor24.domain.member.api.RegisterRequest;
+import com.jnb.animaldoctor24.domain.member.domain.Role;
+import com.jnb.animaldoctor24.global.util.Utils;
+import com.jnb.animaldoctor24.global.constants.ResponseConstants;
+import com.jnb.animaldoctor24.domain.member.dto.AuthenticationRequest;
+import com.jnb.animaldoctor24.domain.member.dto.AuthenticationResponse;
+import com.jnb.animaldoctor24.domain.member.dto.RegisterRequest;
 import com.jnb.animaldoctor24.domain.member.dao.UserRepo;
 import lombok.RequiredArgsConstructor;
 

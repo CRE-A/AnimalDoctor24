@@ -1,4 +1,4 @@
-package com.jnb.animaldoctor24.domain.member.config;
+package com.jnb.animaldoctor24.global.config;
 
 import com.jnb.animaldoctor24.domain.member.dao.UserRepo;
 import lombok.RequiredArgsConstructor;
@@ -22,8 +22,6 @@ private final UserRepo userRepo;
     public UserDetailsService userDetailsService() {
         return username -> userRepo.findByEmail(username)
                 .orElseThrow(()->new UsernameNotFoundException("User not found"));
-
-
     }
     @Bean
     public AuthenticationProvider authenticationProvider() {

@@ -1,5 +1,6 @@
-package com.jnb.animaldoctor24.domain.member.config;
+package com.jnb.animaldoctor24.global.config.jwt;
 
+import com.jnb.animaldoctor24.global.config.jwt.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

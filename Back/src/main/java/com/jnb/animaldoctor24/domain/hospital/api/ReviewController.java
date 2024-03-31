@@ -2,7 +2,7 @@ package com.jnb.animaldoctor24.domain.hospital.api;
 
 
 import com.jnb.animaldoctor24.domain.hospital.application.ReviewService;
-import com.jnb.animaldoctor24.domain.member.api.RegisterRequest;
+import com.jnb.animaldoctor24.domain.hospital.dto.ReviewRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 // 병원 리뷰 등록/수정/삭제
 @RestController
-@RequestMapping("/review")
+@RequestMapping("/api/review")
 @RequiredArgsConstructor
 public class ReviewController {
     private final ReviewService reviewService;
