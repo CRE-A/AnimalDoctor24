@@ -26,8 +26,7 @@ public class SecurityConfig {
     private final AuthenticationProvider authenticationProvider;
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-
-//        test1
+        //        test1
         CorsConfiguration corsConfig = new CorsConfiguration();
         corsConfig.setAllowCredentials(true);
 //        corsConfig.setAllowedOrigins(List.of("http://localhost:5173", "null"));

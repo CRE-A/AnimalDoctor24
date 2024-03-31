@@ -1,0 +1,9 @@
+diff a/Back/src/main/java/com/jnb/animaldoctor24/global/config/security/SecurityConfig.java b/Back/src/main/java/com/jnb/animaldoctor24/global/config/security/SecurityConfig.java	(rejected hunks)
+@@ -27,6 +27,7 @@
+     @Bean
+     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+ 
++//        test1
+         CorsConfiguration corsConfig = new CorsConfiguration();
+         corsConfig.setAllowCredentials(true);
+ //        corsConfig.setAllowedOrigins(List.of("http://localhost:5173", "null"));
