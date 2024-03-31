@@ -25,12 +25,18 @@ public class HospitalController {
     @GetMapping("/list")
     @Operation(summary = "병원 리스트 조회", description = "병원 목록 조회")
     public ResponseEntity<List<Hospital>> showListOfHospital () {
+        if(hospitalService.list()==null){
+            throw new RuntimeException("data not found");
+        }
         return ResponseEntity.ok(hospitalService.list());
     }
 
     @GetMapping("/{hn}")
     @Operation(summary = "병원 조회", description = "병원 정보 조회")
     public ResponseEntity<Hospital> showHospital (@PathVariable Integer hn) {
+        if(hospitalService.getHospital(hn)==null){
+            throw new RuntimeException("data not found");
+        }
         return ResponseEntity.ok().body(hospitalService.getHospital(hn));
     }
 
