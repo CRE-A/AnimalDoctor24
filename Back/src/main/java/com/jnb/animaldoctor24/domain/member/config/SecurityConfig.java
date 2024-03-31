@@ -11,6 +11,10 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -21,14 +25,20 @@ public class SecurityConfig {
     private final AuthenticationProvider authenticationProvider;
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//        CorsConfiguration corsConfig = new CorsConfiguration();
-//        corsConfig.setAllowCredentials(true);
-////        corsConfig.setAllowedOrigins(List.of("http://localhost:5173", "null"));
-//        corsConfig.setAllowedOrigins(List.of("http://localhost:3000", "null"));
-//        corsConfig.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
-//        corsConfig.setAllowedHeaders(List.of("*"));
-//        corsConfig.setExposedHeaders(List.of("*"));
+
+        CorsConfiguration corsConfig = new CorsConfiguration();
+        corsConfig.setAllowCredentials(true);
+//        corsConfig.setAllowedOrigins(List.of("http://localhost:5173", "null"));
+        corsConfig.setAllowedOrigins(List.of("http://localhost:3000", "null"));
+        corsConfig.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
+        corsConfig.setAllowedHeaders(List.of("*"));
+        corsConfig.setExposedHeaders(List.of("*"));
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", corsConfig);
+
         http
+                .cors(config -> config.configurationSource(source))
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/**").permitAll()

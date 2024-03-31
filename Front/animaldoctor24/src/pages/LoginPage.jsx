@@ -1,23 +1,30 @@
 import React, {useState} from 'react';
-import Nav from "../components/Nav";
+import {userService} from "../api/Users";
 
 export default function LoginPage() {
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleUsernameChange = (event) => {
-        setUsername(event.target.value);
+    const handleEmailChange = (event) => {
+        setEmail(event.target.value);
     };
 
     const handlePasswordChange = (event) => {
         setPassword(event.target.value);
     };
 
+
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log('Logging in with:', { username, password });
-        setUsername('');
-        setPassword('');
+        try{
+            const res = userService.getUserById({email, password});
+            console.log('응답오는지 확인 :' , res);
+            setEmail('email');
+            setPassword('password');
+        }catch (e) {
+            console.log(e);
+        }
+
     };
     return (
         <>
@@ -33,9 +40,9 @@ export default function LoginPage() {
                             className="w-[342px] h-[54px] border-2 mb-[20px] focus:outline-none px-[10px] "
                             placeholder="이메일"
                             type="text"
-                            id="username"
-                            value={username}
-                            onChange={handleUsernameChange}
+                            id="email"
+                            value={email}
+                            onChange={handleEmailChange}
                             required
                         />
                     </div>
@@ -54,7 +61,7 @@ export default function LoginPage() {
                 </form>
                 <div className="relative bottom-[30px]">
                     <span className="mr-[5px]">계정이 아직 없으신가요?</span>
-                    <span className="font-bold">회원가입</span>
+                    <button className="font-bold">회원가입</button>
                 </div>
             </section>
         </>
