@@ -5,19 +5,18 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class HospitalDto {
+public class HospitalResponse {
     private Integer hn; // hospital number
-    private String id;
+    private String email;
     private String role;
     private String title;
     private String contents;
     private String tag;
+    private String desc;
     private String imgPath;
-
 
 }

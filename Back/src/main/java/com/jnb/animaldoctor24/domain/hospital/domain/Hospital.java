@@ -21,23 +21,20 @@ public class Hospital {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false,name="hn")
     private Integer hn;
-    @Column(nullable = false,name="id")
-    private String id;
+    @Column(nullable = false,name="email")
+    private String email;
 
     @Column(nullable = false, name = "role")
     private String role;
 
-    @Column(nullable = false,name="title")
-    private String title;
+    @Column(nullable = false,name="name")
+    private String name;
 
     @Column(nullable = false,name="contents")
     private String contents;
 
     @Column(nullable = false,name="tag")
     private String tag;
-
-//    @Column(nullable = false, name="desc")
-//    private String desc;
 
     @Column(nullable = false, name="imgPath")
     private String imgPath;

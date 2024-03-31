@@ -1,10 +1,11 @@
 package com.jnb.animaldoctor24.domain.hospital.application.impl;
 
+import com.jnb.animaldoctor24.domain.hospital.domain.Hospital;
 import com.jnb.animaldoctor24.domain.hospital.dto.HospitalRequest;
+import com.jnb.animaldoctor24.domain.hospital.dto.HospitalResponse;
 import com.jnb.animaldoctor24.domain.hospital.application.HospitalService;
 import com.jnb.animaldoctor24.global.constants.ResponseConstants;
 import com.jnb.animaldoctor24.domain.hospital.dao.HospitalRepo;
-import com.jnb.animaldoctor24.domain.hospital.dto.HospitalDto;
 import com.jnb.animaldoctor24.global.util.Utils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,21 +21,21 @@ public class HospitalServiceImpl implements HospitalService {
     private final HospitalRepo hospitalRepository;
 
     @Override
-    public List<HospitalDto> list(Integer page) {
-        return null ;
+    public List<Hospital> list() {
+
+        return hospitalRepository.findAllBy();
     }
 
     @Override
-    public HospitalDto getHospital(Integer hn) {
+    public Hospital getHospital(Integer hn) {
 
-        hospitalRepository.findByHn(hn);
-        return HospitalDto.builder()
-                .build();
+            return hospitalRepository.findByHn(hn);
     }
 
     @Override
     public ResponseEntity<String> register(HospitalRequest request) {
         try{
+            hospitalRepository.save(getHospitalFromRequest(request));
             return Utils.getResponseEntity(ResponseConstants.HOSPITAL_REGISTER_SUCCESS, HttpStatus.OK);
         }catch (Exception e){
             return Utils.getResponseEntity(ResponseConstants.HOSPITAL_REGISTER_FAILED, HttpStatus.BAD_REQUEST);
@@ -44,6 +45,7 @@ public class HospitalServiceImpl implements HospitalService {
     @Override
     public ResponseEntity<String> modify(HospitalRequest request) {
         try{
+//            hospitalRepository.;
             return Utils.getResponseEntity(ResponseConstants.HOSPITAL_MODIFY_SUCCESS, HttpStatus.OK);
         }catch (Exception e){
             return Utils.getResponseEntity(ResponseConstants.HOSPITAL_MODIFY_FAILED, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -57,6 +59,18 @@ public class HospitalServiceImpl implements HospitalService {
         }catch (Exception e){
             return Utils.getResponseEntity(ResponseConstants.HOSPITAL_DELETE_FAILED, HttpStatus.BAD_REQUEST);
         }
+    }
+
+
+    private Hospital getHospitalFromRequest(HospitalRequest request){
+        Hospital hospital = new Hospital();
+        hospital.setEmail(request.getEmail());
+        hospital.setRole(request.getRole());
+        hospital.setName(request.getName());
+        hospital.setContents(request.getContents());
+        hospital.setTag(request.getTag());
+        hospital.setImgPath(request.getImgPath());
+        return hospital;
     }
 
 }

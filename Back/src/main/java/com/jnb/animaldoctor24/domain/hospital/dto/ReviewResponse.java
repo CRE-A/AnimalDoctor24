@@ -9,9 +9,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ReviewRequest {
-    private Integer cn;
-    private Integer bn;
+public class ReviewResponse {
+    private Integer rn; // review number
+    private Integer hn; // hospital number
     private String id;
     private String role;
     private String title;

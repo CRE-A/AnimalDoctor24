@@ -1,7 +1,8 @@
 package com.jnb.animaldoctor24.domain.hospital.application;
 
+import com.jnb.animaldoctor24.domain.hospital.domain.Hospital;
 import com.jnb.animaldoctor24.domain.hospital.dto.HospitalRequest;
-import com.jnb.animaldoctor24.domain.hospital.dto.HospitalDto;
+import com.jnb.animaldoctor24.domain.hospital.dto.HospitalResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -10,9 +11,9 @@ import java.util.List;
 @Service
 public interface HospitalService {
 
-    public List<HospitalDto> list(Integer page);
+    public List<Hospital> list();
 
-    public HospitalDto getHospital(Integer hn);
+    public Hospital getHospital(Integer hn);
 
     public ResponseEntity<String> register(HospitalRequest request);
 
