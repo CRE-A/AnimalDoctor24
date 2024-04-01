@@ -3,6 +3,7 @@ package com.jnb.animaldoctor24.domain.member.application;
 import com.jnb.animaldoctor24.global.config.jwt.JwtService;
 import com.jnb.animaldoctor24.domain.member.domain.User;
 import com.jnb.animaldoctor24.domain.member.domain.Role;
+import com.jnb.animaldoctor24.global.error.exception.DataNotFoundException;
 import com.jnb.animaldoctor24.global.util.Utils;
 import com.jnb.animaldoctor24.global.constants.ResponseConstants;
 import com.jnb.animaldoctor24.domain.member.dto.AuthenticationRequest;
@@ -59,7 +60,8 @@ public class AuthenticationService {
                         request.getEmail(), request.getPassword()
                 )
         );
-        var user = userRepository.findByEmail(request.getEmail()).orElseThrow();
+        var user = userRepository.findByEmail(request.getEmail()).
+                orElseThrow(() -> new DataNotFoundException(ResponseConstants.USER_DOES_NOT_EXISTS));
         var jwtToken = jwtService.generateToken(user);
 
         return AuthenticationResponse.builder()

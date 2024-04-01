@@ -6,6 +6,7 @@ import com.jnb.animaldoctor24.domain.hospital.dto.HospitalResponse;
 import com.jnb.animaldoctor24.domain.hospital.application.HospitalService;
 import com.jnb.animaldoctor24.global.constants.ResponseConstants;
 import com.jnb.animaldoctor24.domain.hospital.dao.HospitalRepo;
+import com.jnb.animaldoctor24.global.error.exception.DataNotFoundException;
 import com.jnb.animaldoctor24.global.util.Utils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -22,14 +23,20 @@ public class HospitalServiceImpl implements HospitalService {
 
     @Override
     public List<Hospital> list() {
-
-        return hospitalRepository.findAllBy();
+        List<Hospital> listOfHospital = hospitalRepository.findAllBy();
+        if(listOfHospital==null){
+            throw new DataNotFoundException(ResponseConstants.HOSPITAL_DOES_NOT_EXISTS);
+        }
+        return listOfHospital;
     }
 
     @Override
     public Hospital getHospital(Integer hn) {
-
-            return hospitalRepository.findByHn(hn);
+        Hospital hospitalInfo = hospitalRepository.findByHn(hn);
+        if(hospitalInfo==null){
+            throw new DataNotFoundException(ResponseConstants.HOSPITAL_DOES_NOT_EXISTS);
+        }
+        return hospitalInfo;
     }
 
     @Override
