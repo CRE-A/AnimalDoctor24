@@ -24,6 +24,8 @@ import java.util.List;
 public class SecurityConfig {
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
+    private final CustomFailureHandler customFailureHandler;
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         //        test1
@@ -43,10 +45,13 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/**").permitAll()
-//                        .requestMatchers("/home/**").permitAll()
                         .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/api/v1/admin/**").hasAnyRole("ADMIN","MANAGER")
                         .anyRequest().authenticated()
                 )
+                .formLogin(formLogin -> formLogin.loginPage("/api/vi/auth/login"))
+                .formLogin(formLogin -> formLogin.loginProcessingUrl("/api/vi/auth/lginProc"))
+                .formLogin(formLogin -> formLogin.failureHandler(customFailureHandler))
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);

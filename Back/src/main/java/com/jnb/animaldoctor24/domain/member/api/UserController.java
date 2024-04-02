@@ -26,15 +26,10 @@ public class UserController {
         return ResponseEntity.ok(authenticationService.register(request));
     }
 
-    @PostMapping("/authenticate")
-    @Operation(summary = "로그인", description = "인증/인가")
+    @PostMapping("/auth/lginProc")
+    @Operation(summary = "로그인", description = "authentication/authorization")
     public ResponseEntity<AuthenticationResponse> authenticate(@Valid @RequestBody AuthenticationRequest request) {
         return ResponseEntity.ok(authenticationService.authenticate(request));
     }
 
-//    @GetMapping("/main")
-//    public ResponseEntity<ResponseEntity<String>> home () {
-//        System.out.println("/home/main 입장!");
-//        return null;
-//    }
 }

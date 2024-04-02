@@ -3,8 +3,6 @@ package com.jnb.animaldoctor24.domain.hospital.api;
 import com.jnb.animaldoctor24.domain.hospital.application.HospitalService;
 import com.jnb.animaldoctor24.domain.hospital.domain.Hospital;
 import com.jnb.animaldoctor24.domain.hospital.dto.HospitalRequest;
-import com.jnb.animaldoctor24.domain.hospital.dto.HospitalResponse;
-import com.jnb.animaldoctor24.global.error.exception.DataNotFoundException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.zip.DataFormatException;
 
 // 병원 등록/삭제   [## 관리자만 ##]
 // 병원 좋아요(하트) 등록/삭제

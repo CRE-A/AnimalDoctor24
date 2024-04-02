@@ -3,6 +3,7 @@ package com.jnb.animaldoctor24.domain.member.application;
 import com.jnb.animaldoctor24.global.config.jwt.JwtService;
 import com.jnb.animaldoctor24.domain.member.domain.User;
 import com.jnb.animaldoctor24.domain.member.domain.Role;
+import com.jnb.animaldoctor24.global.error.exception.DataAlreadyExistException;
 import com.jnb.animaldoctor24.global.error.exception.DataNotFoundException;
 import com.jnb.animaldoctor24.global.util.Utils;
 import com.jnb.animaldoctor24.global.constants.ResponseConstants;
@@ -30,24 +31,23 @@ public class AuthenticationService {
     private final PasswordEncoder passwordEncoder;
     Role role;
 
+
+
     public ResponseEntity<String> register(RegisterRequest request) {
-        // first thing check if the request is valid or not !!
+
         try {
-            if (validateSignupRequest(request)) {
-                // if the request is valid then lets check if the user already exists or not
-                Optional<User> user = userRepository.findByEmail(request.getEmail());
-                if (user.isEmpty()) {
-                    userRepository.save(getUserFromRequest(request));
-                    var validUser = userRepository.findByEmail(request.getEmail()).get();
-                    var jwtToken = jwtService.generateToken(validUser);
-                    System.out.println(jwtToken);
-                    return Utils.getResponseEntity(ResponseConstants.USER_SIGNUP_SUCCESS + " " + jwtToken, HttpStatus.OK);
-                } else {
-                    return Utils.getResponseEntity(ResponseConstants.USER_ALREADY_EXISTS, HttpStatus.BAD_REQUEST);
-                }
+            Optional<User> user = userRepository.findByEmail(request.getEmail());
+            if (user.isEmpty()) {
+                userRepository.save(getUserFromRequest(request));
+                User validUser = userRepository.findByEmail(request.getEmail()).get();
+                String jwtToken = jwtService.generateToken(validUser);
+                System.out.println(jwtToken);
+                return Utils.getResponseEntity(ResponseConstants.USER_SIGNUP_SUCCESS + " " + jwtToken, HttpStatus.OK);
             } else {
-                return Utils.getResponseEntity(ResponseConstants.INVALID_DATA, HttpStatus.BAD_REQUEST);
+                throw new DataAlreadyExistException(ResponseConstants.USER_ALREADY_EXISTS);
             }
+        } catch (DataAlreadyExistException e) {
+            throw new DataAlreadyExistException(e.getMessage());
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -55,14 +55,11 @@ public class AuthenticationService {
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        request.getEmail(), request.getPassword()
-                )
-        );
-        var user = userRepository.findByEmail(request.getEmail()).
-                orElseThrow(() -> new DataNotFoundException(ResponseConstants.USER_DOES_NOT_EXISTS));
-        var jwtToken = jwtService.generateToken(user);
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
+        System.out.println("authnticate 여기 지나감");
+        User user = userRepository.findByEmail(request.getEmail()).
+                orElseThrow(() -> new RuntimeException(ResponseConstants.USER_LOGIN_FAILED));
+        String jwtToken = jwtService.generateToken(user);
 
         return AuthenticationResponse.builder()
                 .accessToken(jwtToken)
@@ -85,4 +82,31 @@ public class AuthenticationService {
         user.setRole(Role.USER);
         return user;
     }
+
+
+
+
+//    public ResponseEntity<String> register(RegisterRequest request) {
+//        // first thing check if the request is valid or not !!
+//        try {
+//            if (validateSignupRequest(request)) {
+//                // if the request is valid then lets check if the user already exists or not
+//                Optional<User> user = userRepository.findByEmail(request.getEmail());
+//                if (user.isEmpty()) {
+//                    userRepository.save(getUserFromRequest(request));
+//                    var validUser = userRepository.findByEmail(request.getEmail()).get();
+//                    var jwtToken = jwtService.generateToken(validUser);
+//                    System.out.println(jwtToken);
+//                    return Utils.getResponseEntity(ResponseConstants.USER_SIGNUP_SUCCESS + " " + jwtToken, HttpStatus.OK);
+//                } else {
+//                    return Utils.getResponseEntity(ResponseConstants.USER_ALREADY_EXISTS, HttpStatus.BAD_REQUEST);
+//                }
+//            } else {
+//                return Utils.getResponseEntity(ResponseConstants.INVALID_DATA, HttpStatus.BAD_REQUEST);
+//            }
+//        } catch (Exception ex) {
+//            ex.printStackTrace();
+//        }
+//        return Utils.getResponseEntity(ResponseConstants.SOME_THING_WENT_WRONG, HttpStatus.INTERNAL_SERVER_ERROR);
+//    }
 }

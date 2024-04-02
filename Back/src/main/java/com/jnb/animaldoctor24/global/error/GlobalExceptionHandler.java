@@ -4,7 +4,6 @@ import com.jnb.animaldoctor24.global.error.exception.BizException;
 import com.jnb.animaldoctor24.global.error.exception.ConflictException;
 import com.jnb.animaldoctor24.global.error.exception.DataNotFoundException;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +28,7 @@ public class GlobalExceptionHandler {
 
 
     /*
-     * Exception : 자손 Exception class에서 처리하지 못하는 예외 처리
+     * DataNotFoundException : DB 조회 결과 값이 null 인 경우 예외 처리
      */
     @ExceptionHandler(DataNotFoundException.class)
     public ResponseEntity<ErrorResponse> dataNotFoundException(DataNotFoundException e) {

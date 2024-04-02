@@ -2,7 +2,6 @@ package com.jnb.animaldoctor24.domain.hospital.application.impl;
 
 import com.jnb.animaldoctor24.domain.hospital.domain.Hospital;
 import com.jnb.animaldoctor24.domain.hospital.dto.HospitalRequest;
-import com.jnb.animaldoctor24.domain.hospital.dto.HospitalResponse;
 import com.jnb.animaldoctor24.domain.hospital.application.HospitalService;
 import com.jnb.animaldoctor24.global.constants.ResponseConstants;
 import com.jnb.animaldoctor24.domain.hospital.dao.HospitalRepo;
@@ -23,29 +22,41 @@ public class HospitalServiceImpl implements HospitalService {
 
     @Override
     public List<Hospital> list() {
-        List<Hospital> listOfHospital = hospitalRepository.findAllBy();
-        if(listOfHospital==null){
-            throw new DataNotFoundException(ResponseConstants.HOSPITAL_DOES_NOT_EXISTS);
+        try {
+            List<Hospital> listOfHospital = hospitalRepository.findAllBy();
+            if(listOfHospital==null){
+                throw new DataNotFoundException(ResponseConstants.HOSPITAL_DOES_NOT_EXISTS);
+            }
+            return listOfHospital;
+        } catch (DataNotFoundException e) {
+            throw new DataNotFoundException(e.getMessage());
+        } catch (Exception e){
+            throw new RuntimeException(ResponseConstants.SOME_THING_WENT_WRONG);
         }
-        return listOfHospital;
     }
 
     @Override
     public Hospital getHospital(Integer hn) {
-        Hospital hospitalInfo = hospitalRepository.findByHn(hn);
-        if(hospitalInfo==null){
-            throw new DataNotFoundException(ResponseConstants.HOSPITAL_DOES_NOT_EXISTS);
+        try {
+            Hospital hospitalInfo = hospitalRepository.findByHn(hn);
+            if(hospitalInfo==null){
+                throw new DataNotFoundException(ResponseConstants.HOSPITAL_DOES_NOT_EXISTS);
+            }
+            return hospitalInfo;
+        } catch (DataNotFoundException e) {
+            throw new DataNotFoundException(e.getMessage());
+        } catch (RuntimeException e){
+            throw new RuntimeException(ResponseConstants.SOME_THING_WENT_WRONG);
         }
-        return hospitalInfo;
     }
 
     @Override
     public ResponseEntity<String> register(HospitalRequest request) {
         try{
-            hospitalRepository.save(getHospitalFromRequest(request));
+            Hospital status = hospitalRepository.save(getHospitalFromRequest(request));
             return Utils.getResponseEntity(ResponseConstants.HOSPITAL_REGISTER_SUCCESS, HttpStatus.OK);
         }catch (Exception e){
-            return Utils.getResponseEntity(ResponseConstants.HOSPITAL_REGISTER_FAILED, HttpStatus.BAD_REQUEST);
+            return Utils.getResponseEntity(ResponseConstants.HOSPITAL_REGISTER_FAILED, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -64,7 +75,7 @@ public class HospitalServiceImpl implements HospitalService {
         try {
             return Utils.getResponseEntity(ResponseConstants.HOSPITAL_DELETE_SUCCESS, HttpStatus.OK);
         }catch (Exception e){
-            return Utils.getResponseEntity(ResponseConstants.HOSPITAL_DELETE_FAILED, HttpStatus.BAD_REQUEST);
+            return Utils.getResponseEntity(ResponseConstants.HOSPITAL_DELETE_FAILED, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
