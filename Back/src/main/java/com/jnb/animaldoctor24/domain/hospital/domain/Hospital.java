@@ -36,6 +36,9 @@ public class Hospital {
     @Column(nullable = false,name="tag")
     private String tag;
 
+//    @Enumerated(EnumType.STRING)
+//    private Tag tag;
+
     @Column(nullable = false, name="imgPath")
     private String imgPath;
 

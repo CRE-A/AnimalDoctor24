@@ -2,7 +2,9 @@ package com.jnb.animaldoctor24.domain.hospital.api;
 
 import com.jnb.animaldoctor24.domain.hospital.application.HospitalService;
 import com.jnb.animaldoctor24.domain.hospital.domain.Hospital;
-import com.jnb.animaldoctor24.domain.hospital.dto.HospitalRequest;
+import com.jnb.animaldoctor24.domain.hospital.dto.HospitalDeleteRequest;
+import com.jnb.animaldoctor24.domain.hospital.dto.HospitalModifyRequest;
+import com.jnb.animaldoctor24.domain.hospital.dto.HospitalRegisterRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -35,20 +37,20 @@ public class HospitalController {
 
     @PostMapping("/new")
     @Operation(summary = "병원 정보 등록", description = "병원 신규 등록")
-    public ResponseEntity<ResponseEntity<String>> registerHospital (@RequestBody HospitalRequest request) {
+    public ResponseEntity<ResponseEntity<String>> registerHospital (@RequestBody HospitalRegisterRequest request) {
         return ResponseEntity.ok(hospitalService.register(request));
     }
 
 
-    @PatchMapping("/{hn}/{userId}")
+    @PatchMapping("/{hn}")
     @Operation(summary = "병원 정보 수정", description = "병원 정보 수정")
-    public ResponseEntity<ResponseEntity<String>> modifyHospital (@PathVariable Integer hn, @PathVariable String userId, @RequestBody HospitalRequest request) {
-        return ResponseEntity.ok(hospitalService.modify(request));
+    public ResponseEntity<ResponseEntity<String>> modifyHospital (@PathVariable Integer hn, @RequestBody HospitalModifyRequest request) {
+        return ResponseEntity.ok(hospitalService.modify(request, hn));
     }
 
-    @DeleteMapping("/{hn}/{userId}")
+    @DeleteMapping("/{hn}")
     @Operation(summary = "병원 정보 삭제", description = "병원 정보 삭제")
-    public ResponseEntity<ResponseEntity<String>> deleteHospital (@PathVariable Integer hn, @PathVariable String userId, @RequestBody HospitalRequest request) {
-        return ResponseEntity.ok(hospitalService.delete(request));
+    public ResponseEntity<ResponseEntity<String>> deleteHospital (@PathVariable Integer hn,  @RequestBody HospitalDeleteRequest request) {
+        return ResponseEntity.ok(hospitalService.delete(request, hn));
     }
 }

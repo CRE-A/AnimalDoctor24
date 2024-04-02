@@ -1,7 +1,10 @@
 package com.jnb.animaldoctor24.global.error;
 
-import com.jnb.animaldoctor24.global.error.exception.BizException;
+import com.jnb.animaldoctor24.domain.hospital.error.exception.HospitalDeleteException;
+import com.jnb.animaldoctor24.domain.hospital.error.exception.HospitalModifyException;
+import com.jnb.animaldoctor24.domain.hospital.error.exception.HospitalRegisterException;
 import com.jnb.animaldoctor24.global.error.exception.ConflictException;
+import com.jnb.animaldoctor24.global.error.exception.DataAlreadyExistException;
 import com.jnb.animaldoctor24.global.error.exception.DataNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.LoggerFactory;
@@ -28,22 +31,14 @@ public class GlobalExceptionHandler {
 
 
     /*
-     * DataNotFoundException : DB 조회 결과 값이 null 인 경우 예외 처리
+     * RuntimeException :  local 에서 처리하지 못한 예외 처리
      */
-    @ExceptionHandler(DataNotFoundException.class)
-    public ResponseEntity<ErrorResponse> dataNotFoundException(DataNotFoundException e) {
-        ErrorResponse errorResponse = new ErrorResponse("DataNotFoundException", e.getMessage());
-        return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.NOT_FOUND);
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<ErrorResponse> handleException(RuntimeException e) {
+        ErrorResponse errorResponse = new ErrorResponse("RuntimeException", e.getMessage());
+        return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    /*
-     * BizException : 서비스 단계에서 던지는 예외를 처리
-     */
-    @ExceptionHandler(BizException.class)
-    public ResponseEntity<ErrorResponse> handleException(BizException e) {
-        ErrorResponse errorResponse = new ErrorResponse("Bizexception", e.getMessage());
-        return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.BAD_REQUEST);
-    }
 
     /*
      * BadRequestException : 사용자 요청 값에 문제가 있을 경우 사용
@@ -53,6 +48,26 @@ public class GlobalExceptionHandler {
         ErrorResponse errorResponse = new ErrorResponse("Bad Request", e.getMessage());
         return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.BAD_REQUEST);
     }
+
+    /*
+     * DataNotFoundException : DB 조회 결과 값이 null 인 경우 예외 처리
+     */
+    @ExceptionHandler(DataNotFoundException.class)
+    public ResponseEntity<ErrorResponse> dataNotFoundException(DataNotFoundException e) {
+        ErrorResponse errorResponse = new ErrorResponse("dataNotFoundException", e.getMessage());
+        return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
+
+    /*
+     * DataNotFoundException : DB 조회 결과 값이 DATA가 이미 존재하는 경우 예외 처리
+     */
+    @ExceptionHandler(DataAlreadyExistException.class)
+    public ResponseEntity<ErrorResponse> DataAlreadyExistException(DataAlreadyExistException e) {
+        ErrorResponse errorResponse = new ErrorResponse("DataAlreadyExistException", e.getMessage());
+        return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
 
     /*
      * UnAuthorizedException : 사용자 인증처리에 문제가 있을 경우 사용
@@ -79,6 +94,36 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> handleException(NonceExpiredException e) {
         ErrorResponse errorResponse = new ErrorResponse("AccessToken Expired", e.getMessage());
         return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.UNAUTHORIZED);
+    }
+
+
+    /*
+     * HospitalRegisterException : 병원 등록 중 오류가 난 경우
+     */
+    @ExceptionHandler(HospitalRegisterException.class)
+    public ResponseEntity<ErrorResponse> HospitalRegisterException(HospitalRegisterException e) {
+        ErrorResponse errorResponse = new ErrorResponse("HospitalRegisterException", e.getMessage());
+        return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+
+    /*
+     * HospitalModifyException : 병원 수정 중 오류가 난 경우
+     */
+    @ExceptionHandler(HospitalModifyException.class)
+    public ResponseEntity<ErrorResponse> HospitalModifyException(HospitalModifyException e) {
+        ErrorResponse errorResponse = new ErrorResponse("HospitalModifyException", e.getMessage());
+        return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+
+    /*
+     * HospitalDeleteException : 병원 수정 중 오류가 난 경우
+     */
+    @ExceptionHandler(HospitalDeleteException.class)
+    public ResponseEntity<ErrorResponse> HospitalDeleteException(HospitalDeleteException e) {
+        ErrorResponse errorResponse = new ErrorResponse("HospitalDeleteException", e.getMessage());
+        return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }

@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class HospitalRequest {
-//    private Integer hn; // hospital number
-
+public class HospitalModifyRequest {
+    @Schema(description = "병원고유번호", example = "21")
+    private String hn;
     @Schema(description = "이메일", example = "jagure1991@naver.com")
     private String email;
     @Schema(description = "권한", example = "USER/ADMIN")
@@ -25,5 +25,4 @@ public class HospitalRequest {
     private String tag;
     @Schema(description = "이미지경로", example = "/path/asdf/1234")
     private String imgPath;
-
 }
