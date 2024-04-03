@@ -8,8 +8,10 @@ import java.util.Optional;
 
 public interface HospitalRepo extends JpaRepository<Hospital, Integer> {
     List<Hospital> findAllBy();
-    Hospital findByHn(Integer hn);
+//    Hospital findByHn(Integer hn);
     Optional<Hospital> findHospitalByName(String name);
+
+    Optional<Hospital> findByHn(Integer hn);
 
 //    List<HospitalDto> findAllBy(Integer page);
 }

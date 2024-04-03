@@ -58,6 +58,14 @@ public class AuthenticationService {
                 .build();
     }
 
+    public AuthenticationResponse reAuthenticate(AuthenticationRequest request, String email) {
+        return AuthenticationResponse.builder()
+                .build();
+    }
+
+    public void withdraw(String email) {
+    }
+
     private User getUserFromRequest(RegisterRequest request) {
         User user = new User();
         user.setFirstname(request.getFirstname());
@@ -68,5 +76,7 @@ public class AuthenticationService {
         user.setRole(Role.USER);
         return user;
     }
+
+
 
 }

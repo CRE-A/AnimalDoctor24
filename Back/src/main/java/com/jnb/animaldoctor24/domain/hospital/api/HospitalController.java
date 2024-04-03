@@ -1,13 +1,14 @@
 package com.jnb.animaldoctor24.domain.hospital.api;
 
 import com.jnb.animaldoctor24.domain.hospital.application.HospitalService;
+import com.jnb.animaldoctor24.domain.hospital.application.impl.HospitalServiceImpl;
 import com.jnb.animaldoctor24.domain.hospital.domain.Hospital;
-import com.jnb.animaldoctor24.domain.hospital.dto.HospitalDeleteRequest;
 import com.jnb.animaldoctor24.domain.hospital.dto.HospitalModifyRequest;
 import com.jnb.animaldoctor24.domain.hospital.dto.HospitalRegisterRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +22,8 @@ import java.util.List;
 @RequiredArgsConstructor
 @Tag(name="동물병원", description="동물병원 API")
 public class HospitalController {
+    private final org.slf4j.Logger Logger = LoggerFactory.getLogger(HospitalController.class);
+
     private final HospitalService hospitalService;
 
     @GetMapping("/list")
@@ -50,7 +53,7 @@ public class HospitalController {
 
     @DeleteMapping("/{hn}")
     @Operation(summary = "병원 정보 삭제", description = "병원 정보 삭제")
-    public ResponseEntity<ResponseEntity<String>> deleteHospital (@PathVariable Integer hn,  @RequestBody HospitalDeleteRequest request) {
-        return ResponseEntity.ok(hospitalService.delete(request, hn));
+    public ResponseEntity<ResponseEntity<String>> deleteHospital (@PathVariable Integer hn) {
+        return ResponseEntity.ok(hospitalService.delete(hn));
     }
 }

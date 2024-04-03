@@ -1,7 +1,6 @@
 package com.jnb.animaldoctor24.domain.hospital.application.impl;
 
 import com.jnb.animaldoctor24.domain.hospital.domain.Hospital;
-import com.jnb.animaldoctor24.domain.hospital.dto.HospitalDeleteRequest;
 import com.jnb.animaldoctor24.domain.hospital.dto.HospitalModifyRequest;
 import com.jnb.animaldoctor24.domain.hospital.dto.HospitalRegisterRequest;
 import com.jnb.animaldoctor24.domain.hospital.application.HospitalService;
@@ -36,7 +35,7 @@ public class HospitalServiceImpl implements HospitalService {
     @Override
     public List<Hospital> list() throws RuntimeException{
         List<Hospital> listOfHospital = hospitalRepository.findAllBy();
-        if(listOfHospital==null){
+        if(listOfHospital==null || listOfHospital.isEmpty()){
             throw new DataNotFoundException(ResponseConstants.HOSPITAL_DOES_NOT_EXISTS);
         }
         return listOfHospital;
@@ -44,11 +43,11 @@ public class HospitalServiceImpl implements HospitalService {
 
     @Override
     public Hospital getHospital(Integer hn) throws RuntimeException{
-        Hospital hospitalInfo = hospitalRepository.findByHn(hn);
-        if(hospitalInfo==null){
+        Optional<Hospital> hospitalInfo = hospitalRepository.findByHn(hn);
+        if(hospitalInfo.isEmpty()){
             throw new DataNotFoundException(ResponseConstants.HOSPITAL_DOES_NOT_EXISTS);
         }
-        return hospitalInfo;
+        return hospitalInfo.get();
     }
 
     @Override
@@ -65,7 +64,7 @@ public class HospitalServiceImpl implements HospitalService {
 
     @Override
     public ResponseEntity<String> modify(HospitalModifyRequest request, Integer hn) throws HospitalModifyException {
-        Optional<Hospital> hospitalInfo = Optional.ofNullable(hospitalRepository.findByHn(hn));
+        Optional<Hospital> hospitalInfo = hospitalRepository.findByHn(hn);
         if(hospitalInfo.isEmpty()) {
             throw new DataNotFoundException(ResponseConstants.HOSPITAL_DOES_NOT_EXISTS);
         }
@@ -83,13 +82,13 @@ public class HospitalServiceImpl implements HospitalService {
     }
 
     @Override
-    public ResponseEntity<String> delete(HospitalDeleteRequest request, Integer hn) throws HospitalDeleteException {
-        Optional<Hospital> hospital = Optional.ofNullable(hospitalRepository.findByHn(hn));
-        if(hospital.isEmpty()) {
+    public ResponseEntity<String> delete(Integer hn) throws HospitalDeleteException {
+        Optional<Hospital> hospitalInfo = hospitalRepository.findByHn(hn);
+        if(hospitalInfo.isEmpty()) {
             throw new DataNotFoundException(ResponseConstants.HOSPITAL_DOES_NOT_EXISTS);
         }
 
-        hospitalRepository.deleteById(Integer.valueOf(request.getHn()));
+        hospitalRepository.delete(hospitalInfo.get());
         return Utils.getResponseEntity(ResponseConstants.HOSPITAL_DELETE_SUCCESS, HttpStatus.OK);
     }
 
