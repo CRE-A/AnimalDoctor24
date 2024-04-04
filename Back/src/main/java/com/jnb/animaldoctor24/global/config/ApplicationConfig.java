@@ -1,6 +1,6 @@
 package com.jnb.animaldoctor24.global.config;
 
-import com.jnb.animaldoctor24.domain.member.dao.UserRepo;
+import com.jnb.animaldoctor24.domain.member.dao.MemberRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @RequiredArgsConstructor
 public class ApplicationConfig {
-private final UserRepo userRepo;
+private final MemberRepo userRepo;
 
     @Bean
     public UserDetailsService userDetailsService() {

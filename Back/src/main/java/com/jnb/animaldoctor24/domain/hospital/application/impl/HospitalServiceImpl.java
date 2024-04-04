@@ -52,7 +52,7 @@ public class HospitalServiceImpl implements HospitalService {
 
     @Override
     public ResponseEntity<String> register(HospitalRegisterRequest request) throws HospitalRegisterException {
-        Optional<Hospital> hospital = hospitalRepository.findHospitalByName(request.getName());
+        Optional<Hospital> hospital = hospitalRepository.findHospitalByHospitalName(request.getHospitalName());
         if(hospital.isPresent()) {
             throw new DataAlreadyExistException(ResponseConstants.HOSPITAL_ALREADY_EXISTS);
         }
@@ -69,14 +69,20 @@ public class HospitalServiceImpl implements HospitalService {
             throw new DataNotFoundException(ResponseConstants.HOSPITAL_DOES_NOT_EXISTS);
         }
 
-        Hospital hospital = em.find(Hospital.class, request.getHn());
+        Hospital hospital = em.find(Hospital.class, hn);
 
         hospital.setEmail(request.getEmail());
-        hospital.setName(request.getName());
-        hospital.setContents(request.getContents());
-        hospital.setTag(request.getTag());
-        hospital.setImgPath(request.getImgPath());
+        hospital.setRole(request.getRole());
+        hospital.setHospitalName(request.getHospitalName());
+        hospital.setLocation(request.getLocation());
+        hospital.setDescription(request.getDescription());
+        hospital.setBusinessDay(request.getBusinessDay());
+        hospital.setBusinessHour(request.getBusinessHour());
+        hospital.setLunchHour(request.getLunchHour());
+        hospital.setHospitalPhoneNumber(request.getHospitalPhoneNumber());
+        hospital.setImagePath(request.getImagePath());
 
+        System.out.println("여기지나김");
         return Utils.getResponseEntity(ResponseConstants.HOSPITAL_MODIFY_SUCCESS, HttpStatus.OK);
 
     }
@@ -97,10 +103,14 @@ public class HospitalServiceImpl implements HospitalService {
         Hospital hospital = new Hospital();
         hospital.setEmail(request.getEmail());
         hospital.setRole(request.getRole());
-        hospital.setName(request.getName());
-        hospital.setContents(request.getContents());
-        hospital.setTag(request.getTag());
-        hospital.setImgPath(request.getImgPath());
+        hospital.setHospitalName(request.getHospitalName());
+        hospital.setLocation(request.getLocation());
+        hospital.setDescription(request.getDescription());
+        hospital.setBusinessDay(request.getBusinessDay());
+        hospital.setBusinessHour(request.getBusinessHour());
+        hospital.setLunchHour(request.getLunchHour());
+        hospital.setHospitalPhoneNumber(request.getHospitalPhoneNumber());
+        hospital.setImagePath(request.getImagePath());
         return hospital;
     }
 

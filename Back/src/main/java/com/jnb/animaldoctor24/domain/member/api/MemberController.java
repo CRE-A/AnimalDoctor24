@@ -21,7 +21,7 @@ import java.net.URI;
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
 @Tag(name="로그인/회원가입", description="로그인 API")
-public class UserController {
+public class MemberController {
     private final AuthenticationService authenticationService;
 
     @PostMapping("/register")

@@ -15,34 +15,31 @@ import org.hibernate.annotations.DynamicUpdate;
 @AllArgsConstructor
 @DynamicInsert
 @DynamicUpdate
-@Table(name="hospital")
+@Table(name = "hospita")
 public class Hospital {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false,name="hn")
+    @Column(nullable = false, name = "hn")     // hospital number (pk)
     private Integer hn;
-    @Column(nullable = false,name="email")
+    @Column(nullable = false, name = "email")
     private String email;
-
     @Column(nullable = false, name = "role")
     private String role;
-
-    @Column(nullable = false,name="name")
-    private String name;
-
-    @Column(nullable = false,name="contents")
-    private String contents;
-
-    @Column(nullable = false,name="tag")
-    private String tag;
-
-//    @Enumerated(EnumType.STRING)
-//    private Tag tag;
-
-    @Column(nullable = false, name="imgPath")
-    private String imgPath;
-
-//    @Column(nullable = false, name="like")
-//    private String like;
+    @Column(nullable = false, name = "hospital_name")
+    private String hospitalName;
+    @Column(nullable = false, name = "location")
+    private String location;
+    @Column(nullable = false, name = "description")
+    private String description;
+    @Column(nullable = false, name = "businessDay")
+    private String businessDay;
+    @Column(nullable = false, name = "businessHour")
+    private String businessHour;
+    @Column(nullable = false, name = "lunch_hour")
+    private String lunchHour;
+    @Column(nullable = false, name = "hospital_phoneNumber")
+    private String hospitalPhoneNumber;
+    @Column(nullable = false, name = "image_path", length = 500)
+    private String imagePath;
 
 }

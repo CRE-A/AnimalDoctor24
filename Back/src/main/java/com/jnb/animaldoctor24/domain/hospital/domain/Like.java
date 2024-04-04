@@ -5,8 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+
+import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -15,27 +18,17 @@ import org.hibernate.annotations.DynamicUpdate;
 @AllArgsConstructor
 @DynamicInsert
 @DynamicUpdate
-@Table(name="reviews")
-public class Review {
+@Table(name="likes")
+public class Like {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false,name="rn")       // review number (pk)
-    private Integer rn;
-    @Column(nullable = false,name="hn")
+    @Column(nullable = false, name = "ln")     // like number (pk)
+    private Integer ln;
+    @Column(nullable = false, name = "hn")
     private Integer hn;
-
     @Column(nullable = false, name = "email")
     private String email;
-
-    @Column(nullable = false,name="role")
-    private String role;
-
-    @Column(nullable = false,name="title")
-    private String title;
-
-    @Column(nullable = false,name="contents")
-    private String contents;
-    @Column(nullable = false, name = "image_path", length = 500)
-    private String imagePath;
-
+    @CreationTimestamp
+    @Column(name= "creation_date")
+    private LocalDateTime creationDate;
 }

@@ -1,16 +1,15 @@
 package com.jnb.animaldoctor24.domain.member.application;
 
 import com.jnb.animaldoctor24.global.config.jwt.JwtService;
-import com.jnb.animaldoctor24.domain.member.domain.User;
+import com.jnb.animaldoctor24.domain.member.domain.Member;
 import com.jnb.animaldoctor24.domain.member.domain.Role;
 import com.jnb.animaldoctor24.global.error.exception.DataAlreadyExistException;
-import com.jnb.animaldoctor24.global.error.exception.DataNotFoundException;
 import com.jnb.animaldoctor24.global.util.Utils;
 import com.jnb.animaldoctor24.global.constants.ResponseConstants;
 import com.jnb.animaldoctor24.domain.member.dto.AuthenticationRequest;
 import com.jnb.animaldoctor24.domain.member.dto.AuthenticationResponse;
 import com.jnb.animaldoctor24.domain.member.dto.RegisterRequest;
-import com.jnb.animaldoctor24.domain.member.dao.UserRepo;
+import com.jnb.animaldoctor24.domain.member.dao.MemberRepo;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.HttpStatus;
@@ -26,7 +25,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class AuthenticationService {
     private final JwtService jwtService;
-    private final UserRepo userRepository;
+    private final MemberRepo memberRepository;
     private final AuthenticationManager authenticationManager;
     private final PasswordEncoder passwordEncoder;
     Role role;
@@ -34,14 +33,14 @@ public class AuthenticationService {
 
 
     public ResponseEntity<String> register(RegisterRequest request) {
-        Optional<User> user = userRepository.findByEmail(request.getEmail());
+        Optional<Member> user = memberRepository.findByEmail(request.getEmail());
         if (user.isPresent()) {
             throw new DataAlreadyExistException(ResponseConstants.USER_ALREADY_EXISTS);
         }
 
-        userRepository.save(getUserFromRequest(request));
+        memberRepository.save(getUserFromRequest(request));
 
-        User validUser = userRepository.findByEmail(request.getEmail()).get();
+        Member validUser = memberRepository.findByEmail(request.getEmail()).get();
         String jwtToken = jwtService.generateToken(validUser);
         return Utils.getResponseEntity(ResponseConstants.USER_SIGNUP_SUCCESS + " " + jwtToken, HttpStatus.OK);
     }
@@ -49,7 +48,7 @@ public class AuthenticationService {
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
 
-        User user = userRepository.findByEmail(request.getEmail()).
+        Member user = memberRepository.findByEmail(request.getEmail()).
                 orElseThrow(() -> new RuntimeException(ResponseConstants.USER_LOGIN_FAILED));
         String jwtToken = jwtService.generateToken(user);
 
@@ -66,15 +65,19 @@ public class AuthenticationService {
     public void withdraw(String email) {
     }
 
-    private User getUserFromRequest(RegisterRequest request) {
-        User user = new User();
-        user.setFirstname(request.getFirstname());
-        user.setLastname(request.getLastname());
-        user.setPhoneNumber(request.getPhoneNumber());
-        user.setEmail(request.getEmail());
-        user.setPassword(passwordEncoder.encode(request.getPassword()));
-        user.setRole(Role.USER);
-        return user;
+    private Member getUserFromRequest(RegisterRequest request) {
+        Member member = new Member();
+        member.setFirstName(request.getFirstName());
+        member.setLastName(request.getLastName());
+        member.setEmail(request.getEmail());
+        member.setPassword(passwordEncoder.encode(request.getPassword()));
+        member.setPhoneNumber(request.getPhoneNumber());
+        member.setRole(request.getRole());
+        member.setAnimalName(request.getAnimalName());
+        member.setAnimalGender(request.getAnimalGender());
+        member.setAnimalBreed(request.getAnimalBreed());
+        member.setImagePath(request.getImagePath());
+        return member;
     }
 
 
