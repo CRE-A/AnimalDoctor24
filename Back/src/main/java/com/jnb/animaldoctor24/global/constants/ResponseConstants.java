@@ -12,6 +12,8 @@ public class ResponseConstants {
     public static final String USER_LOGOUT_FAILED = "User Logout Failed";
     public static final String INVALID_DATA = "Invalid Data";
     public static final String INVALID_REQUEST = "Invalid Request";
+    public static final String USER_DELETE_SUCCESS = "User Account Delete Success";
+
 
 
     public static final String ID_OR_PASSWORD_ARE_NOT_CORRECT = "이메일 혹은 비밀번호가 일치하지 않습니다. 다시 확인해 주세요";
@@ -47,6 +49,9 @@ public class ResponseConstants {
     public static final String LIKE_ADD_FAILED = "Like add Failed";
     public static final String LIKE_DELETE_SUCCESS = "Like Delete Success";
     public static final String LIKE_DELETE_FAILED = "Like Delete Failed";
+    public static final String LIKE_ALREADY_EXIST_DELETE_SUCCESS = "Like Already Exists, Like Delete Success";
+    public static final String LIKE_DOES_NOT_EXIST_ADD_SUCCESS = "Like Does not exist, Like Add Success";
+
 
 
 }

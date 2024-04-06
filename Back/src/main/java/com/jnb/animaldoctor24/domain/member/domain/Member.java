@@ -1,5 +1,8 @@
 package com.jnb.animaldoctor24.domain.member.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.jnb.animaldoctor24.domain.hospital.domain.Like;
+import com.jnb.animaldoctor24.domain.hospital.domain.Review;
 import jakarta.persistence.*;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -10,8 +13,10 @@ import org.hibernate.annotations.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Builder
@@ -32,7 +37,7 @@ public class Member implements UserDetails {
     private String lastName;
     @Column(name = "phone_number")
     private String phoneNumber;
-    @Column(nullable = false,name="password")
+    @Column(nullable = false,name="password", length = 512)
     private String password;
     @ColumnDefault("0")
     private String status;
@@ -47,11 +52,21 @@ public class Member implements UserDetails {
     @Column(nullable = false, name = "image_path", length = 500)
     private String imagePath;
     @CreationTimestamp
-    @Column(name= "creation_date")
+    @Column(name= "creation_date", updatable = false)
     private Date creationDate;
     @UpdateTimestamp
     @Column(name= "update_date")
     private Date updateDate;
+
+    @OneToMany(fetch=FetchType.LAZY)
+    @JoinColumn(name="email")
+    @JsonIgnore
+    private List<Like> like = new ArrayList<>();
+
+    @OneToMany(fetch=FetchType.LAZY)
+    @JoinColumn(name= "email")
+    @JsonIgnore
+    private List<Review> review = new ArrayList<>();
 
 
     @Override

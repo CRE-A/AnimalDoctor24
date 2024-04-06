@@ -7,8 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.Optional;
 
-public interface ReviewRepo extends JpaRepository<Review, Integer> {
-    List<Review> findAllByHn(Integer hn);
-    Optional<Review> findByRn(Integer rn);
+public interface ReviewRepo extends JpaRepository<Review, Long> {
+    List<Review> findAllByHn(Long hn);
+    Optional<Review> findByRn(Long rn);
 
 }

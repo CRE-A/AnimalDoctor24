@@ -24,9 +24,9 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false,name="rn")       // review number (pk)
-    private Integer rn;
+    private Long rn;
     @Column(nullable = false,name="hn")
-    private Integer hn;
+    private Long hn;
 
     @Column(nullable = false, name = "email")
     private String email;
@@ -42,7 +42,7 @@ public class Review {
     @Column(nullable = false, name = "image_path", length = 500)
     private String imagePath;
     @CreationTimestamp
-    @Column(name= "creation_date")
+    @Column(name= "creation_date", updatable = false)
     private Date creationDate;
     @UpdateTimestamp
     @Column(name= "update_date")

@@ -1,5 +1,6 @@
 package com.jnb.animaldoctor24.domain.hospital.domain;
 
+import com.jnb.animaldoctor24.domain.member.domain.Member;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,12 +24,13 @@ public class Like {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, name = "ln")     // like number (pk)
-    private Integer ln;
-    @Column(nullable = false, name = "hn")
-    private Integer hn;
-    @Column(nullable = false, name = "email")
+    private Long ln;
+    @Column
+    private Long hn;
+    @Column
     private String email;
     @CreationTimestamp
-    @Column(name= "creation_date")
+    @Column(name= "creation_date", updatable = false)
     private LocalDateTime creationDate;
+
 }

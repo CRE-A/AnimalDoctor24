@@ -1,20 +1,25 @@
 package com.jnb.animaldoctor24.domain.hospital.dao;
 
 import com.jnb.animaldoctor24.domain.hospital.domain.Hospital;
-import com.jnb.animaldoctor24.domain.hospital.dto.HospitalResponse;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface HospitalRepo extends JpaRepository<Hospital, Integer> {
+public interface HospitalRepo extends JpaRepository<Hospital, Long> {
 
 
     Optional<Hospital> findHospitalByHospitalName(String hospitalName);
 
-    Optional<Hospital> findByHn(Integer hn);
+    Optional<Hospital> findByHn(Long hn);
+    Optional<Hospital> findByHnAndEmail(Long hn, String email);
+    Optional<Hospital> findAllByEmail(String email);
+
+    List<Hospital> findByLike_Email(String email);
+//    Optional<Hospital> findByLike_HnAndEmail(Long hn, String email);
+    Optional<Hospital> findByLike_HnAndLike_Email(Long hn, String email);
+
+
 
 
 }

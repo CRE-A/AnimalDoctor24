@@ -10,18 +10,12 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+public class ReviewModifyRequest {
 
-public class ReviewRegisterRequest {
-
-    @Schema(description = "등록자 이메일", example = "jagure1991@naver.com")  // fk
-    private String email;
-    @Schema(description = "등록자 권한", example = "ADMIN")
-    private String role;
     @Schema(description = "리뷰 제목", example = "왕맛있어요")
     private String title;
     @Schema(description = "리뷰 본문", example = "라고할줄알았냐? 돈버렸다 이놈아. 다시는 안시켜먹는다")
     private String contents;
     @Schema(description = "이미지경로", example = "/path/asdf/1234")
     private String imagePath;
-
 }

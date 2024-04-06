@@ -6,6 +6,7 @@ import com.jnb.animaldoctor24.domain.hospital.domain.Hospital;
 import com.jnb.animaldoctor24.domain.hospital.domain.Review;
 import com.jnb.animaldoctor24.domain.hospital.dto.HospitalModifyRequest;
 import com.jnb.animaldoctor24.domain.hospital.dto.HospitalRegisterRequest;
+import com.jnb.animaldoctor24.domain.hospital.dto.ReviewModifyRequest;
 import com.jnb.animaldoctor24.domain.hospital.dto.ReviewRegisterRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -29,32 +30,32 @@ public class ReviewController {
 
     @GetMapping("/list/{hn}")
     @Operation(summary = "병원리뷰 리스트 조회", description = "병원리뷰 목록 조회")
-    public ResponseEntity<List<Review>> showListOfHospital (@PathVariable Integer hn) {
+    public ResponseEntity<List<Review>> showListOfHospital (@PathVariable Long hn) {
         return ResponseEntity.ok(reviewService.list(hn));
     }
 
     @GetMapping("/{rn}")
     @Operation(summary = "병원리뷰 조회", description = "병원리뷰 정보 조회")
-    public ResponseEntity<Review> showHospital (@PathVariable Integer rn) {
+    public ResponseEntity<Review> showHospital (@PathVariable Long rn) {
         return ResponseEntity.ok().body(reviewService.getReview(rn));
     }
 
     @PostMapping("/new/{hn}")
     @Operation(summary = "병원리뷰 정보 등록", description = "병원리뷰 신규 등록")
-    public ResponseEntity<ResponseEntity<String>> registerHospital (@PathVariable Integer hn,@Valid @RequestBody ReviewRegisterRequest request) {
+    public ResponseEntity<ResponseEntity<String>> registerHospital (@PathVariable Long hn,@Valid @RequestBody ReviewRegisterRequest request) {
         return ResponseEntity.ok(reviewService.register(request, hn));
     }
 
 
-//    @PatchMapping("/{rn}")
-//    @Operation(summary = "병원리뷰 정보 수정", description = "병원리뷰 정보 수정")
-//    public ResponseEntity<ResponseEntity<String>> modifyHospital (@PathVariable Integer rn, @RequestBody HospitalModifyRequest request) {
-//        return ResponseEntity.ok(reviewService.modify(request, rn));
-//    }
+    @PatchMapping("/{rn}")
+    @Operation(summary = "병원리뷰 정보 수정", description = "병원리뷰 정보 수정")
+    public ResponseEntity<ResponseEntity<String>> modifyHospital (@PathVariable Long rn, @Valid @RequestBody ReviewModifyRequest request) {
+        return ResponseEntity.ok(reviewService.modify(request, rn));
+    }
 
     @DeleteMapping("/{rn}")
     @Operation(summary = "병원리뷰 정보 삭제", description = "병원리뷰 정보 삭제")
-    public ResponseEntity<ResponseEntity<String>> deleteHospital (@PathVariable Integer rn) {
+    public ResponseEntity<ResponseEntity<String>> deleteHospital (@PathVariable Long rn) {
         return ResponseEntity.ok(reviewService.delete(rn));
     }
 

@@ -1,5 +1,6 @@
 package com.jnb.animaldoctor24.domain.hospital.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,7 +11,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import java.util.Date;
+import java.util.*;
 
 @Data
 @Builder
@@ -24,7 +25,7 @@ public class Hospital {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, name = "hn")     // hospital number (pk)
-    private Integer hn;
+    private Long hn;
     @Column(nullable = false, name = "email")
     private String email;
     @Column(nullable = false, name = "role")
@@ -46,11 +47,21 @@ public class Hospital {
     @Column(nullable = false, name = "image_path", length = 500)
     private String imagePath;
     @CreationTimestamp
-    @Column(name= "creation_date")
+    @Column(name= "creation_date", updatable = false)
     private Date creationDate;
     @UpdateTimestamp
     @Column(name= "update_date")
     private Date updateDate;
+
+    @OneToMany(fetch=FetchType.LAZY)
+    @JoinColumn(name="hn")
+    private List<Like> like = new ArrayList<>();
+
+    @OneToMany(fetch=FetchType.LAZY)
+    @JoinColumn(name= "hn")
+//    @JsonIgnore
+    private List<Review> review = new ArrayList<>() ;
+
 
 
 }

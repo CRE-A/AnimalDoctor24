@@ -1,11 +1,9 @@
 package com.jnb.animaldoctor24.domain.hospital.api;
 
 import com.jnb.animaldoctor24.domain.hospital.application.HospitalService;
-import com.jnb.animaldoctor24.domain.hospital.application.impl.HospitalServiceImpl;
 import com.jnb.animaldoctor24.domain.hospital.domain.Hospital;
 import com.jnb.animaldoctor24.domain.hospital.dto.HospitalModifyRequest;
 import com.jnb.animaldoctor24.domain.hospital.dto.HospitalRegisterRequest;
-import com.jnb.animaldoctor24.domain.hospital.dto.HospitalResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -17,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 // 병원 등록/삭제   [## 관리자만 ##]
-// 병원 좋아요(하트) 등록/삭제
 // 병원 검색
 @RestController
 @RequestMapping("/api/v1/hospital")
@@ -33,22 +30,22 @@ public class HospitalController {
     public ResponseEntity<List<Hospital>> showListOfHospital () {
         return ResponseEntity.ok(hospitalService.list());
     }
+
     @GetMapping("/list/{email}")
     @Operation(summary = "병원 리스트 조회", description = "병원 목록 조회")
-    public ResponseEntity<List<HospitalResponse>> showListOfHospital (@PathVariable String email) {
+    public ResponseEntity<List<Hospital>> showListOfHospital (@PathVariable String email) {
         return ResponseEntity.ok(hospitalService.listByEmail(email));
     }
 
-
     @GetMapping("/{hn}")
     @Operation(summary = "병원 조회", description = "병원 정보 조회")
-    public ResponseEntity<Hospital> showHospital (@PathVariable Integer hn) {
+    public ResponseEntity<Hospital> showHospital (@PathVariable Long hn) {
         return ResponseEntity.ok().body(hospitalService.getHospital(hn));
     }
 
     @GetMapping("/{hn}/{email}")
     @Operation(summary = "병원 조회", description = "병원 정보 조회")
-    public ResponseEntity<HospitalResponse> showHospital (@PathVariable Integer hn, String email) {
+    public ResponseEntity<Hospital> showHospital (@PathVariable Long hn, String email) {
         return ResponseEntity.ok().body(hospitalService.getHospitalByEmail(hn, email));
     }
 
@@ -61,13 +58,13 @@ public class HospitalController {
 
     @PatchMapping("/{hn}")
     @Operation(summary = "병원 정보 수정", description = "병원 정보 수정")
-    public ResponseEntity<ResponseEntity<String>> modifyHospital (@PathVariable Integer hn,@Valid @RequestBody HospitalModifyRequest request) {
+    public ResponseEntity<ResponseEntity<String>> modifyHospital (@PathVariable Long hn,@Valid @RequestBody HospitalModifyRequest request) {
         return ResponseEntity.ok(hospitalService.modify(request, hn));
     }
 
     @DeleteMapping("/{hn}")
     @Operation(summary = "병원 정보 삭제", description = "병원 정보 삭제")
-    public ResponseEntity<ResponseEntity<String>> deleteHospital (@PathVariable Integer hn) {
+    public ResponseEntity<ResponseEntity<String>> deleteHospital (@PathVariable Long hn) {
         return ResponseEntity.ok(hospitalService.delete(hn));
     }
 }

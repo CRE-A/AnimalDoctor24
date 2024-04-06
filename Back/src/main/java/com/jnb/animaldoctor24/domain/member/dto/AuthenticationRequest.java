@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AuthenticationRequest {
         @NotEmpty
-        @Schema(description = "이메일", example = "hello@naver.com")
+        @Schema(description = "이메일", example = "jagure1991@naver.com")
         private String email;
         @NotEmpty
         @Schema(description = "비밀번호", example = "jaeHiddelStone!")
