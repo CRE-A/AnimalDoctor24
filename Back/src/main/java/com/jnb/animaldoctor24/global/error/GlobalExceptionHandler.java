@@ -143,4 +143,24 @@ public class GlobalExceptionHandler {
         ErrorResponse errorResponse = new ErrorResponse("HospitalDeleteException", e.getMessage());
         return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+
+    /*
+     * LikeAddException : 병원 좋아요 등록 중 오류가 난 경우
+     */
+    @ExceptionHandler(LikeAddException.class)
+    public ResponseEntity<ErrorResponse> LikeAddException(LikeAddException e) {
+        ErrorResponse errorResponse = new ErrorResponse("LikeAddException", e.getMessage());
+        return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+
+    /*
+     * LikeDeleteException : 병원 좋아요 삭제 중 오류가 난 경우
+     */
+    @ExceptionHandler(LikeDeleteException.class)
+    public ResponseEntity<ErrorResponse> LikeDeleteException(LikeDeleteException e) {
+        ErrorResponse errorResponse = new ErrorResponse("LikeDeleteException", e.getMessage());
+        return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }

@@ -43,5 +43,10 @@ public class ResponseConstants {
     public static final String REVIEW_DOES_NOT_EXISTS = "Review Info Does Not Exists";
 
 
+    public static final String LIKE_ADD_SUCCESS = "Like Add Success";
+    public static final String LIKE_ADD_FAILED = "Like add Failed";
+    public static final String LIKE_DELETE_SUCCESS = "Like Delete Success";
+    public static final String LIKE_DELETE_FAILED = "Like Delete Failed";
+
 
 }
