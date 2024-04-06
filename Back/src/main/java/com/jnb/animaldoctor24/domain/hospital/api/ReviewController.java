@@ -9,6 +9,7 @@ import com.jnb.animaldoctor24.domain.hospital.dto.HospitalRegisterRequest;
 import com.jnb.animaldoctor24.domain.hospital.dto.ReviewRegisterRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -40,7 +41,7 @@ public class ReviewController {
 
     @PostMapping("/new/{hn}")
     @Operation(summary = "병원리뷰 정보 등록", description = "병원리뷰 신규 등록")
-    public ResponseEntity<ResponseEntity<String>> registerHospital (@PathVariable Integer hn, @RequestBody ReviewRegisterRequest request) {
+    public ResponseEntity<ResponseEntity<String>> registerHospital (@PathVariable Integer hn,@Valid @RequestBody ReviewRegisterRequest request) {
         return ResponseEntity.ok(reviewService.register(request, hn));
     }
 

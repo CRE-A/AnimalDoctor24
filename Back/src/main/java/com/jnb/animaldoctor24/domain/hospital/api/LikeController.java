@@ -1,8 +1,6 @@
 package com.jnb.animaldoctor24.domain.hospital.api;
 
-import com.jnb.animaldoctor24.domain.hospital.application.HospitalService;
 import com.jnb.animaldoctor24.domain.hospital.application.LikeService;
-import com.jnb.animaldoctor24.domain.hospital.dto.HospitalRegisterRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;

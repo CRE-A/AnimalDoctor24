@@ -52,4 +52,5 @@ public class Hospital {
     @Column(name= "update_date")
     private Date updateDate;
 
+
 }

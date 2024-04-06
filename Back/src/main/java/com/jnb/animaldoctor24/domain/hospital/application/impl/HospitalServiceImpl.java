@@ -1,9 +1,11 @@
 package com.jnb.animaldoctor24.domain.hospital.application.impl;
 
+//import com.jnb.animaldoctor24.domain.hospital.dao.HospitalAndLikeRepo;
 import com.jnb.animaldoctor24.domain.hospital.domain.Hospital;
 import com.jnb.animaldoctor24.domain.hospital.dto.HospitalModifyRequest;
 import com.jnb.animaldoctor24.domain.hospital.dto.HospitalRegisterRequest;
 import com.jnb.animaldoctor24.domain.hospital.application.HospitalService;
+import com.jnb.animaldoctor24.domain.hospital.dto.HospitalResponse;
 import com.jnb.animaldoctor24.domain.hospital.error.exception.HospitalDeleteException;
 import com.jnb.animaldoctor24.domain.hospital.error.exception.HospitalModifyException;
 import com.jnb.animaldoctor24.domain.hospital.error.exception.HospitalRegisterException;
@@ -30,6 +32,7 @@ public class HospitalServiceImpl implements HospitalService {
 
     private final org.slf4j.Logger Logger = LoggerFactory.getLogger(HospitalServiceImpl.class);
     private final HospitalRepo hospitalRepository;
+//    private final HospitalAndLikeRepo hospitalAndLikeRepo;
     private final EntityManager em;
 
     @Override
@@ -43,6 +46,17 @@ public class HospitalServiceImpl implements HospitalService {
     }
 
     @Override
+    public List<HospitalResponse> listByEmail(String eamil) throws RuntimeException{
+//        List<HospitalResponse> listOfHospital = hospitalAndLikeRepo.findAllByEmail(eamil);
+//        if(listOfHospital==null || listOfHospital.isEmpty()){
+//            throw new DataNotFoundException(ResponseConstants.HOSPITAL_DOES_NOT_EXISTS);
+//        }
+//        return listOfHospital;
+        return null;
+    }
+
+
+    @Override
     public Hospital getHospital(Integer hn) throws RuntimeException{
         Optional<Hospital> hospitalInfo = hospitalRepository.findByHn(hn);
         if(hospitalInfo.isEmpty()){
@@ -50,6 +64,12 @@ public class HospitalServiceImpl implements HospitalService {
         }
 
         return hospitalInfo.get();
+    }
+
+    @Override
+    public HospitalResponse getHospitalByEmail(Integer hn, String email) throws RuntimeException{
+//        Optional<Hospital> hospitalInfo = hospitalAndLikeRepo.fi
+        return null;
     }
 
     @Override
