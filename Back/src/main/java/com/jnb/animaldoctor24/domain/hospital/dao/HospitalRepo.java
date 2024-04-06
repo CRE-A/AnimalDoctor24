@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface HospitalRepo extends JpaRepository<Hospital, Integer> {
-//    List<Hospital> findAllBy();
     Optional<Hospital> findHospitalByHospitalName(String hospitalName);
 
     Optional<Hospital> findByHn(Integer hn);
