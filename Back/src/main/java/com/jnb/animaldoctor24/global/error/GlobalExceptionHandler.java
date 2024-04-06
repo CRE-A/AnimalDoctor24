@@ -1,8 +1,6 @@
 package com.jnb.animaldoctor24.global.error;
 
-import com.jnb.animaldoctor24.domain.hospital.error.exception.HospitalDeleteException;
-import com.jnb.animaldoctor24.domain.hospital.error.exception.HospitalModifyException;
-import com.jnb.animaldoctor24.domain.hospital.error.exception.HospitalRegisterException;
+import com.jnb.animaldoctor24.domain.hospital.error.exception.*;
 import com.jnb.animaldoctor24.global.error.exception.ConflictException;
 import com.jnb.animaldoctor24.global.error.exception.DataAlreadyExistException;
 import com.jnb.animaldoctor24.global.error.exception.DataNotFoundException;
@@ -118,7 +116,7 @@ public class GlobalExceptionHandler {
 
 
     /*
-     * HospitalDeleteException : 병원 수정 중 오류가 난 경우
+     * HospitalDeleteException : 병원 삭제 중 오류가 난 경우
      */
     @ExceptionHandler(HospitalDeleteException.class)
     public ResponseEntity<ErrorResponse> HospitalDeleteException(HospitalDeleteException e) {
@@ -126,4 +124,23 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+
+    /*
+     * ReviewRegisterException : 병원리뷰 등록 중 오류가 난 경우
+     */
+    @ExceptionHandler(ReviewRegisterException.class)
+    public ResponseEntity<ErrorResponse> ReviewRegisterException(ReviewRegisterException e) {
+        ErrorResponse errorResponse = new ErrorResponse("ReviewRegisterException", e.getMessage());
+        return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+
+    /*
+     * ReviewDeleteException : 병원리뷰 삭제 중 오류가 난 경우
+     */
+    @ExceptionHandler(ReviewDeleteException.class)
+    public ResponseEntity<ErrorResponse> ReviewDeleteException(ReviewDeleteException e) {
+        ErrorResponse errorResponse = new ErrorResponse("HospitalDeleteException", e.getMessage());
+        return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }

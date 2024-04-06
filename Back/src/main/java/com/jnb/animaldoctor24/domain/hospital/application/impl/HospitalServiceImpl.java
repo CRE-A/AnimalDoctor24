@@ -34,10 +34,11 @@ public class HospitalServiceImpl implements HospitalService {
 
     @Override
     public List<Hospital> list() throws RuntimeException{
-        List<Hospital> listOfHospital = hospitalRepository.findAllBy();
+        List<Hospital> listOfHospital = hospitalRepository.findAll();
         if(listOfHospital==null || listOfHospital.isEmpty()){
             throw new DataNotFoundException(ResponseConstants.HOSPITAL_DOES_NOT_EXISTS);
         }
+
         return listOfHospital;
     }
 
@@ -47,6 +48,7 @@ public class HospitalServiceImpl implements HospitalService {
         if(hospitalInfo.isEmpty()){
             throw new DataNotFoundException(ResponseConstants.HOSPITAL_DOES_NOT_EXISTS);
         }
+
         return hospitalInfo.get();
     }
 
@@ -69,20 +71,7 @@ public class HospitalServiceImpl implements HospitalService {
             throw new DataNotFoundException(ResponseConstants.HOSPITAL_DOES_NOT_EXISTS);
         }
 
-        Hospital hospital = em.find(Hospital.class, hn);
-
-        hospital.setEmail(request.getEmail());
-        hospital.setRole(request.getRole());
-        hospital.setHospitalName(request.getHospitalName());
-        hospital.setLocation(request.getLocation());
-        hospital.setDescription(request.getDescription());
-        hospital.setBusinessDay(request.getBusinessDay());
-        hospital.setBusinessHour(request.getBusinessHour());
-        hospital.setLunchHour(request.getLunchHour());
-        hospital.setHospitalPhoneNumber(request.getHospitalPhoneNumber());
-        hospital.setImagePath(request.getImagePath());
-
-        System.out.println("여기지나김");
+        updateHospitalInfo(request, hn);
         return Utils.getResponseEntity(ResponseConstants.HOSPITAL_MODIFY_SUCCESS, HttpStatus.OK);
 
     }
@@ -99,7 +88,7 @@ public class HospitalServiceImpl implements HospitalService {
     }
 
 
-    private Hospital getHospitalFromRequest(HospitalRegisterRequest request){
+    private Hospital getHospitalFromRequest(HospitalRegisterRequest request) throws RuntimeException{
         Hospital hospital = new Hospital();
         hospital.setEmail(request.getEmail());
         hospital.setRole(request.getRole());
@@ -112,6 +101,21 @@ public class HospitalServiceImpl implements HospitalService {
         hospital.setHospitalPhoneNumber(request.getHospitalPhoneNumber());
         hospital.setImagePath(request.getImagePath());
         return hospital;
+    }
+
+    private void updateHospitalInfo(HospitalModifyRequest request, Integer hn) throws RuntimeException{
+        Hospital hospital = em.find(Hospital.class, hn);
+
+        hospital.setEmail(request.getEmail());
+        hospital.setRole(request.getRole());
+        hospital.setHospitalName(request.getHospitalName());
+        hospital.setLocation(request.getLocation());
+        hospital.setDescription(request.getDescription());
+        hospital.setBusinessDay(request.getBusinessDay());
+        hospital.setBusinessHour(request.getBusinessHour());
+        hospital.setLunchHour(request.getLunchHour());
+        hospital.setHospitalPhoneNumber(request.getHospitalPhoneNumber());
+        hospital.setImagePath(request.getImagePath());
     }
 
 }

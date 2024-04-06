@@ -5,8 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.util.Date;
 
 @Data
 @Builder
@@ -15,7 +19,7 @@ import org.hibernate.annotations.DynamicUpdate;
 @AllArgsConstructor
 @DynamicInsert
 @DynamicUpdate
-@Table(name = "hospita")
+@Table(name = "hospitals")
 public class Hospital {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,5 +45,11 @@ public class Hospital {
     private String hospitalPhoneNumber;
     @Column(nullable = false, name = "image_path", length = 500)
     private String imagePath;
+    @CreationTimestamp
+    @Column(name= "creation_date")
+    private Date creationDate;
+    @UpdateTimestamp
+    @Column(name= "update_date")
+    private Date updateDate;
 
 }
