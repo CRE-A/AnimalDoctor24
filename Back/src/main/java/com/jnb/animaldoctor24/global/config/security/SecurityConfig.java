@@ -2,6 +2,7 @@ package com.jnb.animaldoctor24.global.config.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 //import com.jnb.animaldoctor24.global.config.ApplicationConfig;
+import com.jnb.animaldoctor24.global.config.ApplicationConfig;
 import com.jnb.animaldoctor24.global.config.security.jwt.JwtAuthenticationFilter;
 import com.jnb.animaldoctor24.global.config.security.jwt.JwtAuthorizationFilter;
 import com.jnb.animaldoctor24.global.config.security.jwt.JwtService;
@@ -37,7 +38,7 @@ public class SecurityConfig {
     private final ObjectMapper objectMapper;
     private final JwtService jwtService;
     private final CustomFailureHandler customFailureHandler;
-//    private final ApplicationConfig applicationConfig;
+    private final ApplicationConfig applicationConfig;
 
 
     @Bean
@@ -46,15 +47,15 @@ public class SecurityConfig {
                 .requestMatchers("/swagger-ui/**", "/swagger-resources/**", "/v3/api-docs/**");
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+//    @Bean
+//    public PasswordEncoder passwordEncoder() {
+//        return new BCryptPasswordEncoder();
+//    }
 
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
-    }
+//    @Bean
+//    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+//        return authenticationConfiguration.getAuthenticationManager();
+//    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -71,7 +72,7 @@ public class SecurityConfig {
         source.registerCorsConfiguration("/**", corsConfig);
 
         AuthenticationConfiguration authConfig = http.getSharedObject(AuthenticationConfiguration.class);
-        AuthenticationManager authenticationManager = authenticationManager(authConfig);
+        AuthenticationManager authenticationManager = applicationConfig.authenticationManager(authConfig);
 
         http
                 .cors(config -> config.configurationSource(source))
