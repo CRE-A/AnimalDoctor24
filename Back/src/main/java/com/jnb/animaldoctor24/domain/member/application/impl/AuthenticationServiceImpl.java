@@ -52,9 +52,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     Role role;
 
-
-    @PostMapping("/login")
-    public ResponseEntity<CommonResult<TokenResponse>> login(HttpServletResponse response) {
+    @Override
+    public CommonResult<TokenResponse> login(HttpServletResponse response) {
 
         CommonData commonData = CommonDataHolder.getCommonData();
 
@@ -76,19 +75,11 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 accessToken);
 
         setCookie(response, "_rtkn", refreshToken);
-        return ResponseEntity.ok(new CommonResult<>(result));
+        return new CommonResult<>(result);
     }
 
-
-    @PostMapping("/logout")
-    public ResponseEntity<?> logout(@RequestBody Map<String, String> payload) {
-        log.debug("payload : {} ", payload);
-
-        return ResponseEntity.ok(new CommonResult<>());
-    }
-
-    @PostMapping("/token")
-    public ResponseEntity<CommonResult<TokenResponse>> refreshAccessToken(HttpServletResponse response, @CookieValue(value = "_rtkn") String refreshToken) {
+    @Override
+    public CommonResult<TokenResponse> refreshAccessToken(HttpServletResponse response, @CookieValue(value = "_rtkn") String refreshToken) {
 
         log.debug("refreshToken : {}", refreshToken);
         if (refreshToken == null || refreshToken.trim()
@@ -111,13 +102,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
         log.debug("새로운 엑세스 토큰 발급 ->  TokenResponseDto - result : {} ", result);
 
-        return ResponseEntity.ok(new CommonResult<TokenResponse>(result));
+        return new CommonResult<>(result);
     }
-
-
-
-
-
 
 
     @Override
