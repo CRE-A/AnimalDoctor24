@@ -38,7 +38,9 @@ public class JwtAuthenticationFilter extends AbstractAuthenticationProcessingFil
 
         try {
             AuthenticationRequest loginRequest = objectMapper.readValue(request.getInputStream(), AuthenticationRequest.class);
-            UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword());
+            System.out.println(loginRequest.getUsername()+" ///"+ loginRequest.getPassword());
+            UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword());
+            System.out.println(authenticationToken+"//"+authenticationToken.getPrincipal()+"//"+authenticationToken.getDetails());
             return getAuthenticationManager().authenticate(authenticationToken);
         } catch (IOException e) {
             throw new PreAuthenticatedCredentialsNotFoundException("입력값이 유효하지 않습니다.", e);

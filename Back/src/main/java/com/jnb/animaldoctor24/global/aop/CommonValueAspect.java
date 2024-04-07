@@ -1,5 +1,6 @@
 //package com.jnb.animaldoctor24.global.aop;
 //
+//import com.jnb.animaldoctor24.domain.member.dto.BaseDto;
 //import com.jnb.animaldoctor24.global.common.CommonData;
 //import com.jnb.animaldoctor24.global.common.CommonDataHolder;
 //import org.aspectj.lang.JoinPoint;
@@ -43,10 +44,10 @@
 //                    base.setModifyDate(date);
 //                }
 //                if (base.getCreateBy() == null) {
-//                    base.setCreateBy(commonData == null || commonData.getMemberId() == null ? SYSTEM_USER_ID : commonData.getMemberId());
+//                    base.setCreateBy(commonData == null || commonData.getEmail() == null ? SYSTEM_USER_ID : commonData.getEmail());
 //                }
 //                if (base.getModifyBy() == null) {
-//                    base.setModifyBy(commonData == null || commonData.getMemberId() == null ? SYSTEM_USER_ID : commonData.getMemberId());
+//                    base.setModifyBy(commonData == null || commonData.getEmail() == null ? SYSTEM_USER_ID : commonData.getEmail());
 //                }
 //            }
 //        }

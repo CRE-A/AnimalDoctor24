@@ -33,11 +33,11 @@ public class HospitalController {
         return ResponseEntity.ok(hospitalService.list());
     }
 
-    @GetMapping("/list/{email}")
-    @Operation(summary = "병원 리스트 조회", description = "병원 목록 조회")
-    public ResponseEntity<List<Hospital>> showListOfHospital (@PathVariable String email) {
-        return ResponseEntity.ok(hospitalService.listByEmail(email));
-    }
+//    @GetMapping("/list/{email}")
+//    @Operation(summary = "병원 리스트 조회", description = "병원 목록 조회")
+//    public ResponseEntity<List<Hospital>> showListOfHospital (@PathVariable String email) {
+//        return ResponseEntity.ok(hospitalService.listByEmail(email));
+//    }
 
     @GetMapping("/{hn}")
     @Operation(summary = "병원 조회", description = "병원 정보 조회")
@@ -45,11 +45,11 @@ public class HospitalController {
         return ResponseEntity.ok().body(hospitalService.getHospital(hn));
     }
 
-    @GetMapping("/{hn}/{email}")
-    @Operation(summary = "병원 조회", description = "병원 정보 조회")
-    public ResponseEntity<Hospital> showHospital (@PathVariable Long hn, String email) {
-        return ResponseEntity.ok().body(hospitalService.getHospitalByEmail(hn, email));
-    }
+//    @GetMapping("/{hn}/{email}")
+//    @Operation(summary = "병원 조회", description = "병원 정보 조회")
+//    public ResponseEntity<Hospital> showHospital (@PathVariable Long hn, String email) {
+//        return ResponseEntity.ok().body(hospitalService.getHospitalByEmail(hn, email));
+//    }
 
     @PostMapping("/new")
     @Operation(summary = "병원 정보 등록", description = "병원 신규 등록")

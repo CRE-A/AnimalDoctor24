@@ -45,15 +45,15 @@ public class HospitalServiceImpl implements HospitalService {
     }
 
 
-    @Override
-    public List<Hospital> listByEmail(String email) throws RuntimeException{
-        List<Hospital> listOfHospital = hospitalRepository.findByLike_Email(email);
-
-        if(listOfHospital==null || listOfHospital.isEmpty()){
-            throw new DataNotFoundException(ResponseConstants.HOSPITAL_DOES_NOT_EXISTS);
-        }
-        return listOfHospital;
-    }
+//    @Override
+//    public List<Hospital> listByEmail(String email) throws RuntimeException{
+//        List<Hospital> listOfHospital = hospitalRepository.findByLike_Email(email);
+//
+//        if(listOfHospital==null || listOfHospital.isEmpty()){
+//            throw new DataNotFoundException(ResponseConstants.HOSPITAL_DOES_NOT_EXISTS);
+//        }
+//        return listOfHospital;
+//    }
 
     @Override
     public Hospital getHospital(Long hn) throws RuntimeException{
@@ -66,15 +66,16 @@ public class HospitalServiceImpl implements HospitalService {
     }
 
 
-    @Override
-    public Hospital getHospitalByEmail(Long hn, String email) throws RuntimeException{
-        Optional<Hospital> hospitalInfo = hospitalRepository.findByLike_HnAndLike_Email(hn, email);
-        if(hospitalInfo.isEmpty()){
-            throw new DataNotFoundException(ResponseConstants.HOSPITAL_DOES_NOT_EXISTS);
-        }
-
-        return hospitalInfo.get();
-    }
+//    @Override
+//    public Hospital getHospitalByEmail(Long hn, String email) throws RuntimeException{
+////        Optional<Hospital> hospitalInfo = hospitalRepository.findByLike_HnAndLike_Email(hn, email);
+//        Optional<Hospital> hospitalInfo = hospitalRepository.findByLike_HnAndEmail(hn, email);
+//        if(hospitalInfo.isEmpty()){
+//            throw new DataNotFoundException(ResponseConstants.HOSPITAL_DOES_NOT_EXISTS);
+//        }
+//
+//        return hospitalInfo.get();
+//    }
 
     @Override
     public ResponseEntity<String> register(HospitalRegisterRequest request) throws HospitalRegisterException {

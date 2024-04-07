@@ -31,8 +31,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+
 
 import java.util.Map;
 import java.util.Optional;
@@ -126,9 +125,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public AuthenticationResponse authenticate(AuthenticationRequest request, HttpServletResponse response) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
 
-        Member member = memberRepository.findByEmail(request.getEmail()).
+        Member member = memberRepository.findByEmail(request.getUsername()).
                 orElseThrow(() -> new RuntimeException());
         String accessToken = jwtService.generateAccessToken(member.getEmail(), member.getRole());
         String refreshToken = jwtService.generateRefreshToken(member.getEmail());

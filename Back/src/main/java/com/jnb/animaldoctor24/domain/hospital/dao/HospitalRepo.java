@@ -16,7 +16,7 @@ public interface HospitalRepo extends JpaRepository<Hospital, Long> {
     Optional<Hospital> findAllByEmail(String email);
 
     List<Hospital> findByLike_Email(String email);
-//    Optional<Hospital> findByLike_HnAndEmail(Long hn, String email);
+    Optional<Hospital> findByLike_HnAndEmail(Long hn, String email);
     Optional<Hospital> findByLike_HnAndLike_Email(Long hn, String email);
 
 

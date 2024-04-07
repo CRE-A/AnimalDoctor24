@@ -8,14 +8,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
+//@Builder
+//@AllArgsConstructor
+//@NoArgsConstructor
 public class AuthenticationRequest {
-        @NotEmpty
+//        @NotEmpty
         @Schema(description = "이메일", example = "jagure1991@naver.com")
-        private String email;
-        @NotEmpty
+        private String username;
+//        @NotEmpty
         @Schema(description = "비밀번호", example = "jaeHiddelStone!")
         private String password;
 }

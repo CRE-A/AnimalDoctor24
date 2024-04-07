@@ -114,7 +114,7 @@ public class LoginController {
 
         log.debug("새로운 엑세스 토큰 발급 ->  TokenResponseDto - result : {} ", result);
 
-        return ResponseEntity.ok(new CommonResult<TokenResponseDto>(result));
+        return ResponseEntity.ok(new CommonResult<>(result));
     }
 
     @PostMapping("/social/callback")

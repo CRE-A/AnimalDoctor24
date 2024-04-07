@@ -29,7 +29,7 @@ import java.net.URI;
 import java.util.Map;
 
 // 인증 / 인가
-// 유저 등록/수정/삭제
+// 맴버 등록/수정/삭제
 @RestController
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
@@ -40,10 +40,9 @@ public class MemberController {
     private final AuthenticationServiceImpl authenticationService;
 
 
-
-
     @PostMapping("/login")
-    public ResponseEntity<CommonResult<TokenResponse>> login(HttpServletResponse response) {
+    @Operation(summary = "로그인", description = "authentication/authorization")
+    public ResponseEntity<CommonResult<TokenResponse>> login(@RequestBody AuthenticationRequest request, HttpServletResponse response) {
         return ResponseEntity.ok(authenticationService.login(response));
     }
 
@@ -59,16 +58,6 @@ public class MemberController {
     public ResponseEntity<CommonResult<TokenResponse>> refreshAccessToken(HttpServletResponse response, @CookieValue(value = "_rtkn") String refreshToken) {
         return ResponseEntity.ok(authenticationService.refreshAccessToken(response,refreshToken));
     }
-
-
-
-
-
-
-
-
-
-
 
 
 

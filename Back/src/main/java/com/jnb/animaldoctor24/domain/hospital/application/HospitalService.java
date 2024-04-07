@@ -12,10 +12,10 @@ import java.util.List;
 public interface HospitalService {
 
     public List<Hospital> list();
-    public List<Hospital> listByEmail(String eamil);
+//    public List<Hospital> listByEmail(String eamil);
 
     public Hospital getHospital(Long hn);
-    public Hospital getHospitalByEmail(Long hn, String email);
+//    public Hospital getHospitalByEmail(Long hn, String email);
 
     public ResponseEntity<String> register(HospitalRegisterRequest request);
 
