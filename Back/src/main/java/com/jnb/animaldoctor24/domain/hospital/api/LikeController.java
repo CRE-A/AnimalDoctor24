@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/v1/like")
 @RequiredArgsConstructor
+@Slf4j
 @Tag(name="동물병원 하트", description="동물병원 하트(좋아요, 담기) API")
 public class LikeController {
     private final org.slf4j.Logger Logger = LoggerFactory.getLogger(LikeController.class);

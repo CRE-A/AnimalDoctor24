@@ -15,6 +15,7 @@ import com.jnb.animaldoctor24.global.util.Utils;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,7 @@ import java.util.Optional;
 @Service
 @Transactional
 @RequiredArgsConstructor
+@Slf4j
 public class HospitalServiceImpl implements HospitalService {
 
     private final org.slf4j.Logger Logger = LoggerFactory.getLogger(HospitalServiceImpl.class);

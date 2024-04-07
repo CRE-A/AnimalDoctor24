@@ -40,7 +40,7 @@ public class Member implements UserDetails {
     @Column(nullable = false,name="password", length = 512)
     private String password;
     @ColumnDefault("0")
-    private String status;
+    private String activeYn;
     @Enumerated(EnumType.STRING)
     private Role role;
     @Column(name="animal_name")
@@ -102,6 +102,13 @@ public class Member implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public Member(String email, Role role) {
+        this.email = email;
+        this.password = null;
+        this.role = role;
+        this.activeYn = "Y";
     }
 }
 

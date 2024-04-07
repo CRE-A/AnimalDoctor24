@@ -4,12 +4,13 @@ import com.jnb.animaldoctor24.domain.member.dto.AuthenticationRequest;
 import com.jnb.animaldoctor24.domain.member.dto.AuthenticationResponse;
 import com.jnb.animaldoctor24.domain.member.dto.MemberModiyRequest;
 import com.jnb.animaldoctor24.domain.member.dto.MemberRegisterRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.ResponseEntity;
 
 public interface AuthenticationService {
     ResponseEntity<String> register(MemberRegisterRequest request);
 
-    AuthenticationResponse authenticate(AuthenticationRequest request);
+    AuthenticationResponse authenticate(AuthenticationRequest request, HttpServletResponse response);
 
     ResponseEntity<String> reAuthenticate(MemberModiyRequest request, String email);
 

@@ -1,10 +1,13 @@
 package com.jnb.animaldoctor24.domain.member.domain;
 
-import org.springframework.security.core.GrantedAuthority;
+import com.fasterxml.jackson.annotation.JsonCreator;
 
-import java.util.Collection;
 
 public enum Role {
     USER,ADMIN;
+
+    @JsonCreator
+    public static Role from(String role){return Role.valueOf(role.toUpperCase());}
+
 
 }

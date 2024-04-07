@@ -1,7 +1,7 @@
 package com.jnb.animaldoctor24.domain.member.api;
 
 
-import com.jnb.animaldoctor24.domain.member.application.AuthenticationServiceImpl;
+import com.jnb.animaldoctor24.domain.member.application.impl.AuthenticationServiceImpl;
 import com.jnb.animaldoctor24.domain.member.dto.AuthenticationRequest;
 import com.jnb.animaldoctor24.domain.member.dto.AuthenticationResponse;
 import com.jnb.animaldoctor24.domain.member.dto.MemberModiyRequest;
@@ -10,9 +10,10 @@ import com.jnb.animaldoctor24.global.constants.ResponseConstants;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -26,6 +27,7 @@ import java.net.URI;
 @RestController
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
+@Slf4j
 @Tag(name="로그인/회원가입", description="로그인 API")
 public class MemberController {
     private final org.slf4j.Logger Logger = LoggerFactory.getLogger(MemberController.class);
@@ -48,8 +50,8 @@ public class MemberController {
 
     @PostMapping("/authenticate")
     @Operation(summary = "로그인", description = "authentication/authorization")
-    public ResponseEntity<AuthenticationResponse> authenticate(@Valid @RequestBody AuthenticationRequest request) {
-        return ResponseEntity.ok(authenticationService.authenticate(request));
+    public ResponseEntity<AuthenticationResponse> authenticate(@Valid @RequestBody AuthenticationRequest request, HttpServletResponse response) {
+        return ResponseEntity.ok(authenticationService.authenticate(request, response));
     }
 
     @PutMapping("/re-authenticate/{email}")
