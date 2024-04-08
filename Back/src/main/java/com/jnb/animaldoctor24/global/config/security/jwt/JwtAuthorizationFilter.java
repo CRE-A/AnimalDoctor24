@@ -3,6 +3,7 @@ package com.jnb.animaldoctor24.global.config.security.jwt;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jnb.animaldoctor24.domain.member.domain.Member;
 import com.jnb.animaldoctor24.domain.member.domain.Role;
+import com.jnb.animaldoctor24.global.config.security.CustomUserDetails;
 import com.jnb.animaldoctor24.global.error.ErrorResponse;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -45,7 +46,7 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 
         try {
             Map<String, String> parsed = jwtService.parseToken(jwtToken.replace("Bearer ", ""));
-            UserDetails userDetails = new Member(
+            UserDetails userDetails = new CustomUserDetails(
                     parsed.get(JwtService.ClaimConstant.KEY_EMAIL),
                     Role.valueOf(parsed.get(JwtService.ClaimConstant.KEY_MEMBER_ROLE)));
 

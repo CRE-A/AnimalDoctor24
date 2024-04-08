@@ -39,7 +39,7 @@ public class Member implements UserDetails {
     private String phoneNumber;
     @Column(nullable = false,name="password", length = 512)
     private String password;
-    @ColumnDefault("0")
+    @ColumnDefault("Y")
     private String activeYn;
     @Enumerated(EnumType.STRING)
     private Role role;

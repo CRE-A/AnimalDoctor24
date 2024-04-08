@@ -3,6 +3,7 @@ package com.jnb.animaldoctor24.global.aop;
 import com.jnb.animaldoctor24.domain.member.domain.Member;
 import com.jnb.animaldoctor24.global.common.CommonData;
 import com.jnb.animaldoctor24.global.common.CommonDataHolder;
+import com.jnb.animaldoctor24.global.config.security.CustomUserDetails;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -20,9 +21,9 @@ public class CommonRequestInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Member userDetails = null;
-        if (authentication != null && authentication.getPrincipal() instanceof Member) {
-            userDetails = (Member) authentication.getPrincipal();
+        CustomUserDetails userDetails = null;
+        if (authentication != null && authentication.getPrincipal() instanceof CustomUserDetails) {
+            userDetails = (CustomUserDetails) authentication.getPrincipal();
         }
 
         // 공통 데이터 생성
