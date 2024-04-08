@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import MainPage from "./pages/MainPage";
+import HospitalDetails from "./pages/HospitalDetails";
 
 const router = createBrowserRouter([
     {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
             { path: '/login', element: <LoginPage /> },
             { path: '/register', element: <RegisterPage/> },
             { path: '/main', element: <MainPage/> },
+            {
+                path: '/hospitals/:hn',
+                element: <HospitalDetails />,
+            },
         ]
 
     }
